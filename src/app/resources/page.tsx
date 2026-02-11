@@ -17,7 +17,7 @@ export default function ResourcesPage() {
           name: 'Language Conventions',
           icon: '📝',
           topics: [
-            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-3-language-conventions-notes.html', type: 'PDF' },
+            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-3/year-3-language-conventions-notes.html', type: 'PDF' },
           ],
         },
       ],
@@ -30,7 +30,7 @@ export default function ResourcesPage() {
           name: 'Language Conventions',
           icon: '📝',
           topics: [
-            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-4-language-conventions-notes.html', type: 'PDF' },
+            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-4/year-4-language-conventions-notes.html', type: 'PDF' },
           ],
         },
       ],
