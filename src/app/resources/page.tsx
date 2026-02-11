@@ -157,14 +157,12 @@ export default function ResourcesPage() {
       {/* QR Code Banner */}
       <div className="bg-white border-b border-orange-100 py-8">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-8">
-          <div className="flex items-center gap-4">
-            <div className="relative h-24 w-24">
+          <div className="flex items-center gap-6">
+            <div className="relative h-48 w-48">
               <Image src="/qr/ignitemind-qr.jpg" alt="QR Code" fill className="object-contain rounded-lg" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">ignitemind.com</h3>
-              <p className="text-gray-600">Scan for more study materials</p>
-              <p className="text-orange-600 font-semibold">@ignitemind27</p>
+              <p className="text-orange-600 font-bold text-xl">@ignitemind27</p>
             </div>
           </div>
         </div>
