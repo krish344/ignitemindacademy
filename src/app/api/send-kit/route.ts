@@ -107,7 +107,6 @@ Ready for personalized tutoring? Visit https://ignitemindacademy.com/pricing
       `,
       attachments: [
         {
-  {
   filename: `NAPLAN-Prep-Kit-${yearLevel.replace(" ", "-")}.pdf`,
   content: pdfBuffer.toString("base64"),
   contentType: "application/pdf", // use the property expected by the Attachment type
