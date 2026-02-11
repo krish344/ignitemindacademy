@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     // Send email with PDF using Resend
     await resend.emails.send({
-      from:"onboarding@resend.dev",
+      from:"IgniteMind Academy <kit@ignitemindacademy.online>",
       to: [email],
       subject: `🎯 Your NAPLAN Preparation Kit for ${yearLevel}`,
       text: `
