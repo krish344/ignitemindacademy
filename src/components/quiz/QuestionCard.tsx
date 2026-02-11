@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mcq } from "@/components/QuizClient";
+import { Mcq } from "@/lib/quiz";
 
 interface QuestionCardProps {
   question: Mcq;
