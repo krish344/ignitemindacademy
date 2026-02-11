@@ -65,6 +65,9 @@ export default function RootLayout({
                 </a>
               </div>
               <div className="flex items-center space-x-4">
+                <a href="/resources" className="text-gray-600 hover:text-orange-600 px-3 py-2 rounded-md font-medium">
+                  Resources
+                </a>
                 <a href="/dashboard" className="text-gray-600 hover:text-orange-600 px-3 py-2 rounded-md font-medium">
                   Dashboard
                 </a>
