@@ -162,8 +162,8 @@ export default function ResultsDashboard({
                   borderRadius: "12px",
                   border: "1px solid #e5e7eb",
                 }}
-                formatter={(value: number, name: string, props: any) => [
-                  `${props.payload.correct}/${props.payload.total} (${Math.round((props.payload.correct / props.payload.total) * 100)}%)`,
+                formatter={(value?: number, name?: string, props?: any) => [
+                  `${props?.payload?.correct}/${props?.payload?.total} (${Math.round(((props?.payload?.correct || 0) / (props?.payload?.total || 1)) * 100)}%)`,
                   "Score",
                 ]}
               />
