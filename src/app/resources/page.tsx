@@ -20,17 +20,25 @@ export default function ResourcesPage() {
             { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-3/year-3-language-conventions-notes.html', type: 'PDF' },
           ],
         },
-      ],
-    },
-    {
-      year: 'Year 4',
-      description: 'NAPLAN Preparation for Year 4 Students',
-      subjects: [
         {
-          name: 'Language Conventions',
-          icon: '📝',
+          name: 'Numeracy',
+          icon: '🔢',
           topics: [
-            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-4/year-4-language-conventions-notes.html', type: 'PDF' },
+            { name: 'Number, Addition, Subtraction & Multiplication', file: 'year-3/year-3-numeracy-notes.html', type: 'PDF' },
+          ],
+        },
+        {
+          name: 'Reading',
+          icon: '📖',
+          topics: [
+            { name: 'Comprehension Practice', file: 'year-3/year-3-reading-notes.html', type: 'PDF' },
+          ],
+        },
+        {
+          name: 'Writing',
+          icon: '✍️',
+          topics: [
+            { name: 'Narrative Writing Guide', file: 'year-3/year-3-writing-notes.html', type: 'PDF' },
           ],
         },
       ],
@@ -50,22 +58,21 @@ export default function ResourcesPage() {
           name: 'Numeracy',
           icon: '🔢',
           topics: [
-            { name: 'Practice Questions', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
+            { name: 'Number, Operations, Fractions & Patterns', file: 'year-5/year-5-numeracy-notes.html', type: 'PDF' },
           ],
         },
         {
           name: 'Reading',
           icon: '📖',
           topics: [
-            { name: 'Comprehension Practice', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
+            { name: 'Comprehension Practice', file: 'year-5/year-5-reading-notes.html', type: 'PDF' },
           ],
         },
         {
           name: 'Writing',
           icon: '✍️',
           topics: [
-            { name: 'Persuasive Writing Guide', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
-            { name: 'Narrative Writing Guide', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
+            { name: 'Persuasive Writing Guide', file: 'year-5/year-5-writing-notes.html', type: 'PDF' },
           ],
         },
       ],
@@ -78,14 +85,14 @@ export default function ResourcesPage() {
           name: 'Numeracy',
           icon: '🔢',
           topics: [
-            { name: 'Practice Questions', file: '#', type: 'Coming Soon' },
+            { name: 'Integers, Fractions, Decimals & Algebra', file: 'year-7/year-7-numeracy-notes.html', type: 'PDF' },
           ],
         },
         {
           name: 'Reading',
           icon: '📖',
           topics: [
-            { name: 'Comprehension Practice', file: '#', type: 'Coming Soon' },
+            { name: 'Comprehension Practice', file: 'year-7/year-7-reading-notes.html', type: 'PDF' },
           ],
         },
       ],
@@ -98,14 +105,14 @@ export default function ResourcesPage() {
           name: 'Numeracy',
           icon: '🔢',
           topics: [
-            { name: 'Practice Questions', file: '#', type: 'Coming Soon' },
+            { name: 'Equations, Rates, Probability & Data', file: 'year-9/year-9-numeracy-notes.html', type: 'PDF' },
           ],
         },
         {
           name: 'Reading',
           icon: '📖',
           topics: [
-            { name: 'Comprehension Practice', file: '#', type: 'Coming Soon' },
+            { name: 'Comprehension Practice', file: 'year-9/year-9-reading-notes.html', type: 'PDF' },
           ],
         },
       ],
@@ -176,7 +183,7 @@ export default function ResourcesPage() {
 
               {/* Subjects */}
               <div className="p-6">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {yearGroup.subjects.map((subject) => (
                     <div key={subject.name} className="border border-gray-200 rounded-xl p-5 hover:border-orange-300 hover:shadow-md transition-all">
                       <div className="flex items-center gap-3 mb-4">
@@ -253,7 +260,6 @@ export default function ResourcesPage() {
               📷 @ignitemind27
             </a>
             <span>📧 ignitemind60@gmail.com</span>
-            <span>🌐 ignitemind.com</span>
           </div>
         </div>
       </footer>
