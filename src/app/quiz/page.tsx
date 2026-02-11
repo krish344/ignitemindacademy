@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { gradeLabels, GradeKey, testTypes, mcqsForGrade, Mcq } from "@/lib/quiz";
@@ -19,7 +19,7 @@ interface QuizSubmission {
   answers: Record<string, string>;
 }
 
-export default function EnhancedQuizPage() {
+function QuizContent() {
   const searchParams = useSearchParams();
   const [quizState, setQuizState] = useState<"setup" | "mode" | "quiz" | "results">("setup");
   const [studentInfo, setStudentInfo] = useState({
@@ -444,5 +444,13 @@ export default function EnhancedQuizPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function EnhancedQuizPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading quiz...</div>}>
+      <QuizContent />
+    </Suspense>
   );
 }
