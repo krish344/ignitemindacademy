@@ -40,25 +40,32 @@ export default function ResourcesPage() {
       description: 'NAPLAN Preparation for Year 5 Students',
       subjects: [
         {
+          name: 'Language Conventions',
+          icon: '📝',
+          topics: [
+            { name: 'Study Notes - Punctuation, Grammar & Spelling', file: 'year-5/year-5-language-conventions-notes.html', type: 'PDF' },
+          ],
+        },
+        {
           name: 'Numeracy',
           icon: '🔢',
           topics: [
-            { name: 'Practice Questions', file: '#', type: 'Coming Soon' },
+            { name: 'Practice Questions', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
           ],
         },
         {
           name: 'Reading',
           icon: '📖',
           topics: [
-            { name: 'Comprehension Practice', file: '#', type: 'Coming Soon' },
+            { name: 'Comprehension Practice', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
           ],
         },
         {
           name: 'Writing',
           icon: '✍️',
           topics: [
-            { name: 'Persuasive Writing Guide', file: '#', type: 'Coming Soon' },
-            { name: 'Narrative Writing Guide', file: '#', type: 'Coming Soon' },
+            { name: 'Persuasive Writing Guide', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
+            { name: 'Narrative Writing Guide', file: 'year-5/coming-soon.html', type: 'Coming Soon' },
           ],
         },
       ],
