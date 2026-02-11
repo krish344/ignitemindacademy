@@ -107,10 +107,10 @@ Ready for personalized tutoring? Visit https://ignitemindacademy.com/pricing
       `,
       attachments: [
         {
-          filename: `NAPLAN-Prep-Kit-${yearLevel.replace(" ", "-")}.pdf`,
-          content: pdfBuffer.toString("base64"),
-          contentType: "application/pdf",
-        },
+  filename: `NAPLAN-Prep-Kit-${yearLevel.replace(" ", "-")}.pdf`,
+  content: pdfBuffer.toString("base64"),
+  type: "application/pdf", // use `type` instead of `contentType`
+},
       ],
     });
 
