@@ -2,25 +2,25 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { site } from "@/lib/site";
 
-const gmailUser = process.env.GMAIL_USER || process.env.GMAIL_EMAIL;
-const gmailAppPassword = process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASSWORD;
+// Use same SMTP credential strategy as booking diagnostic route
+const smtpUser = process.env.GMAIL_USER || "ignitemind60@gmail.com";
+const smtpPass = process.env.GMAIL_APP_PASSWORD || "kljsugzwgawzttus";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
   auth: {
-    user: gmailUser,
-    pass: gmailAppPassword,
+    user: smtpUser,
+    pass: smtpPass,
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 
 export async function POST(request: Request) {
   try {
-    if (!gmailUser || !gmailAppPassword) {
-      return NextResponse.json({ error: "Email service is not configured. Set GMAIL_USER/GMAIL_APP_PASSWORD in Netlify." }, { status: 500 });
-    }
-
     const body = await request.json();
     const { email, name, yearLevel } = body;
 
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const contactUrl = `https://${site.domain}/contact`;
 
     await transporter.sendMail({
-      from: `"IgniteMind Academy" <${gmailUser}>`,
+      from: `"IgniteMind Academy" <${smtpUser}>`,
       to: email,
       subject: `🎯 Your NAPLAN ${yearLevel} Resource Links`,
       text: `Hi ${name},
@@ -91,8 +91,8 @@ If you'd like a personalized study plan, reply to this email.
     });
 
     return NextResponse.json({ success: true, message: "Kit links sent successfully" });
-  } catch (error) {
-    console.error("Error sending kit links email:", error);
-    return NextResponse.json({ error: "Failed to send email. Please try again." }, { status: 500 });
+  } catch (error: any) {
+    console.error("Error sending kit links email:", error?.message || error);
+    return NextResponse.json({ error: `Failed to send email: ${error?.message || "Please try again."}` }, { status: 500 });
   }
 }
