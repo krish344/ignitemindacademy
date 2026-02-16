@@ -455,16 +455,7 @@ function CTASection() {
             onSubmit={handleSubmit}
             className="max-w-lg mx-auto bg-white rounded-2xl p-6 md:p-8 shadow-2xl"
           >
-            {/* Logo */}
-            <div className="relative h-12 w-auto mx-auto mb-6">
-              <Image
-                src="/logo.png"
-                alt={site.name}
-                fill
-                className="object-contain"
-              />
-            </div>
-
+            
             <div className="space-y-4">
               <div>
                 <input

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function TopNav() {
   const [open, setOpen] = useState(false);
@@ -9,8 +10,11 @@ export default function TopNav() {
     <nav className="bg-white shadow-sm border-b border-orange-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <a href="/" className="text-lg sm:text-2xl font-bold text-orange-600 truncate pr-3">
-            IgniteMind Academy
+          <a href="/" className="flex items-center gap-2 pr-3">
+            <div className="relative h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0">
+              <Image src="/logo.png" alt="Ignite Mind Academy" fill className="object-contain" />
+            </div>
+            <span className="text-base sm:text-2xl font-bold text-orange-600 truncate">Ignite Mind Academy</span>
           </a>
 
           <button
