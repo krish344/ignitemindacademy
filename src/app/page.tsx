@@ -509,7 +509,7 @@ function CTASection() {
                     Sending...
                   </>
                 ) : (
-                  "📧 Send Me the Kit + PDF"
+                  "📧 Send Me the Kit"
                 )}
               </motion.button>
             </div>
