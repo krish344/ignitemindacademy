@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import GoogleTag from '@/components/analytics/GoogleTag';
+import TrackingEvents from '@/components/analytics/TrackingEvents';
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +59,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
         <GoogleTag />
+        <TrackingEvents />
         <nav className="bg-white shadow-sm border-b border-orange-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">

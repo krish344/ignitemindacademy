@@ -337,6 +337,11 @@ function FAQSection() {
   );
 }
 
+function trackEvent(name: string, params: Record<string, any> = {}) {
+  if (typeof window === 'undefined' || !(window as any).gtag) return;
+  (window as any).gtag('event', name, params);
+}
+
 // CTA Section Component with Email Form
 function CTASection() {
   const [email, setEmail] = useState("");
@@ -360,6 +365,9 @@ function CTASection() {
       });
 
       if (response.ok) {
+        trackEvent('kit_request_submit', {
+          year_level: yearLevel,
+        });
         setDownloadUrl(`/api/download-kit?level=${encodeURIComponent(yearLevel)}`);
         setIsSuccess(true);
       } else {

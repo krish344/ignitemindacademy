@@ -1,6 +1,17 @@
 "use client";
 
 import { useState } from "react";
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+function trackEvent(name: string, params: Record<string, any> = {}) {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  window.gtag('event', name, params);
+}
 import { SiteLayout } from "@/components/SiteLayout";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -51,6 +62,11 @@ export default function BookPageClient() {
       console.log("API Response:", result);
 
       if (response.ok) {
+        trackEvent('book_diagnostic_submit', {
+          booking_type: formData.bookingType || 'unknown',
+          year_level: formData.yearLevel || 'unknown',
+        });
+
         setMessage({
           type: "success",
           text: "Booking Submitted! Check your email for confirmation. We will contact you within 24 hours.",

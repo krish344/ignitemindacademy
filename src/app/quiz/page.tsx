@@ -19,6 +19,17 @@ interface QuizSubmission {
   answers: Record<string, string>;
 }
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+function trackEvent(name: string, params: Record<string, any> = {}) {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  window.gtag('event', name, params);
+}
+
 function QuizContent() {
   const searchParams = useSearchParams();
   const [quizState, setQuizState] = useState<"setup" | "mode" | "quiz" | "results">("setup");
@@ -89,6 +100,11 @@ function QuizContent() {
     setSelectedMode(modeId);
     setQuizState("quiz");
     setStartTime(Date.now());
+    trackEvent('quiz_start', {
+      mode: modeId,
+      grade: studentInfo.grade,
+      subject: selectedSubject,
+    });
   };
 
   const calculateScore = () => {
@@ -147,6 +163,13 @@ function QuizContent() {
       });
 
       if (response.ok) {
+        trackEvent('quiz_complete', {
+          grade: studentInfo.grade,
+          subject: selectedSubject,
+          mode: selectedMode,
+          score: percentage,
+          total_questions: questions.length,
+        });
         setQuizState("results");
       } else {
         setQuizState("results");
