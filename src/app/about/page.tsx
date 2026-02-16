@@ -4,9 +4,9 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us | IgniteMind Academy",
   description:
-    "Learn about IgniteMind Academy's approach to NAPLAN tutoring in Melbourne, Victoria.",
+    "Learn about IgniteMind Academy's approach to NAPLAN tutoring in Melbourne, Victoria. Expert tutors helping students excel in Years 3, 5, 7 & 9.",
 };
 
 export default function AboutPage() {

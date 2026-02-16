@@ -1,5 +1,13 @@
 "use client";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Dashboard | IgniteMind Academy",
+  description: "Track your NAPLAN practice progress and view your scores",
+  robots: { index: false, follow: false },
+};
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";

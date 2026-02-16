@@ -6,9 +6,9 @@ import { Button } from "@/components/Button";
 import { ContactCTASection } from "@/components/ui/ContactCTASection";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Pricing | IgniteMind Academy",
   description:
-    "Transparent NAPLAN tutoring pricing for Years 3, 5, 7 & 9 in Melbourne, Victoria.",
+    "Transparent NAPLAN tutoring pricing for Years 3, 5, 7 & 9 in Melbourne, Victoria. Starting from $49/session. Flexible plans available.",
 };
 
 const plans = [

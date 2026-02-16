@@ -6,9 +6,9 @@ import { site } from "@/lib/site";
 import { ContactCTASection } from "@/components/ui/ContactCTASection";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Us | IgniteMind Academy",
   description:
-    "Contact IgniteMind Academy to book a free diagnostic or trial class for NAPLAN tutoring in Melbourne, Victoria.",
+    "Contact IgniteMind Academy to book a free diagnostic or trial class for NAPLAN tutoring in Melbourne, Victoria. Call us or message on WhatsApp.",
 };
 
 function getWhatsAppUrl(message: string): string {

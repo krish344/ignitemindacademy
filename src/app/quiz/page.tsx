@@ -1,5 +1,12 @@
 "use client";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "NAPLAN Quiz | IgniteMind Academy",
+  description: "Practice NAPLAN quizzes for Years 3, 5, 7, and 9. Improve your reading, writing, and numeracy skills with expert-designed tests.",
+};
+
 import { useState, useEffect, useMemo, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
