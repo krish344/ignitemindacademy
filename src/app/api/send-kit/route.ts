@@ -1,12 +1,26 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { generatePDFBuffer } from "@/lib/pdf-generator";
+import nodemailer from "nodemailer";
+import { site } from "@/lib/site";
 
-// Use Resend for reliable email delivery on Netlify
-const resend = new Resend(process.env.RESEND_API_KEY);
+const gmailUser = process.env.GMAIL_USER;
+const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: gmailUser,
+    pass: gmailAppPassword,
+  },
+});
 
 export async function POST(request: Request) {
   try {
+    if (!gmailUser || !gmailAppPassword) {
+      return NextResponse.json({ error: "Email service is not configured" }, { status: 500 });
+    }
+
     const body = await request.json();
     const { email, name, yearLevel } = body;
 
@@ -14,108 +28,71 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Generate PDF
-    const pdfBuffer = await generatePDFBuffer(yearLevel);
+    const resourcesUrl = `https://${site.domain}/resources`;
+    const quizUrl = `https://${site.domain}/quiz`;
+    const kitUrl = `https://${site.domain}/kit`;
+    const pricingUrl = `https://${site.domain}/pricing`;
+    const contactUrl = `https://${site.domain}/contact`;
 
-    // Send email with PDF using Resend
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: [email],
-      subject: `🎯 Your NAPLAN Preparation Kit for ${yearLevel}`,
-      text: `
-Hi ${name}!
+    await transporter.sendMail({
+      from: `"IgniteMind Academy" <${gmailUser}>`,
+      to: email,
+      subject: `🎯 Your NAPLAN ${yearLevel} Resource Links`,
+      text: `Hi ${name},
 
-Thank you for requesting our NAPLAN Preparation Kit for ${yearLevel}!
+Thanks for requesting the ${yearLevel} NAPLAN kit.
 
-We've attached a comprehensive PDF with:
-- ${yearLevel} Numeracy Questions (with answers)
-- Reading Comprehension Questions
-- Writing Prompts
-- Language Conventions Questions
-- Answer Key
+We now provide quick-access resource links instead of PDF attachments:
 
-To download: Open the attached PDF or visit: https://ignitemindacademy.com/kit
+- Resources Hub: ${resourcesUrl}
+- Practice Quiz: ${quizUrl}
+- Kit Page: ${kitUrl}
+- Pricing: ${pricingUrl}
+- Contact / Book Diagnostic: ${contactUrl}
 
-Ready for personalized tutoring? Visit https://ignitemindacademy.com/pricing
+If you'd like a personalized study plan, reply to this email.
 
-© 2026 IgniteMind Academy
-      `,
+© 2026 IgniteMind Academy`,
       html: `
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    
-    <!-- Logo Header -->
-    <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, #f97316, #dc2626); border-radius: 12px;">
-      <h1 style="margin: 0; color: white; font-size: 28px;">🧠 IgniteMind Academy</h1>
-      <p style="margin: 5px 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">NAPLAN Tutoring Excellence</p>
-    </div>
+  <body style="margin:0;padding:0;font-family:Arial,sans-serif;color:#333;background:#fffaf5;">
+    <div style="max-width:640px;margin:0 auto;padding:24px;">
+      <div style="background:linear-gradient(135deg,#f97316,#dc2626);padding:24px;border-radius:12px;color:#fff;text-align:center;">
+        <h1 style="margin:0;">🧠 IgniteMind Academy</h1>
+        <p style="margin:8px 0 0;opacity:.95;">NAPLAN Tutoring Melbourne</p>
+      </div>
 
-    <!-- Main Content -->
-    <div style="background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      
-      <h2 style="color: #f97316; margin-top: 0;">Hi ${name}! 👋</h2>
-      
-      <p>Thank you for requesting our <strong>Comprehensive NAPLAN Preparation Kit</strong> for <strong>${yearLevel}</strong>!</p>
+      <div style="background:#ffffff;border-radius:12px;padding:24px;margin-top:16px;border:1px solid #fed7aa;">
+        <h2 style="color:#ea580c;margin-top:0;">Hi ${name}! 👋</h2>
+        <p>Thanks for requesting support for <strong>${yearLevel}</strong>.</p>
+        <p>Instead of sending a PDF attachment, here are your direct learning resources:</p>
 
-      <div style="background: #fff7ed; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 4px solid #f97316;">
-        <h3 style="margin-top: 0; color: #ea580c;">📦 What's Included in Your PDF:</h3>
-        <ul style="margin: 0; padding-left: 20px;">
-          <li>✅ 50+ Numeracy Practice Questions</li>
-          <li>✅ Reading Comprehension Questions</li>
-          <li>✅ Writing Prompts with Guidelines</li>
-          <li>✅ Language Conventions Questions</li>
-          <li>✅ Complete Answer Key</li>
-          <li>✅ Detailed Explanations</li>
+        <ul style="line-height:1.9;padding-left:18px;">
+          <li><a href="${resourcesUrl}" style="color:#f97316;">Resources Hub</a></li>
+          <li><a href="${quizUrl}" style="color:#f97316;">Practice Quiz</a></li>
+          <li><a href="${kitUrl}" style="color:#f97316;">Free Kit Page</a></li>
+          <li><a href="${pricingUrl}" style="color:#f97316;">Pricing</a></li>
+          <li><a href="${contactUrl}" style="color:#f97316;">Contact / Book Free Diagnostic</a></li>
         </ul>
+
+        <div style="margin-top:24px;text-align:center;">
+          <a href="${resourcesUrl}" style="display:inline-block;background:#f97316;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:700;">Open Resources</a>
+        </div>
       </div>
 
-      <p><strong>📎 Your PDF is attached to this email!</strong></p>
-
-      <p>Can't open the attachment? <a href="https://ignitemindacademy.com/kit" style="color: #f97316;">Download from our website</a></p>
-
-      <!-- CTA Button -->
-      <div style="text-align: center; margin: 30px 0;">
-        <a href="https://ignitemindacademy.com/quiz" style="display: inline-block; background: linear-gradient(to right, #f97316, #dc2626); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">🚀 Try Our Free Practice Quiz</a>
+      <div style="text-align:center;margin-top:16px;color:#64748b;font-size:12px;">
+        © 2026 IgniteMind Academy · Follow <a href="${site.socials.instagram}" style="color:#f97316;">@ignitemind27</a>
       </div>
-
-      <p style="text-align: center; color: #666; font-size: 14px;">
-        Ready for personalized tutoring? <a href="https://ignitemindacademy.com/pricing" style="color: #f97316;">View our pricing</a> or
-        <a href="https://ignitemindacademy.com/contact" style="color: #f97316;">contact us</a> to book a free diagnostic!
-      </p>
-
     </div>
-
-    <!-- Footer -->
-    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-      <p style="margin: 0 0 10px; color: #666;">
-        Follow us on Instagram: <a href="https://instagram.com/ignitemind27" style="color: #f97316;">@ignitemind27</a>
-      </p>
-      <p style="margin: 0; color: #999; font-size: 12px;">
-        © 2026 IgniteMind Academy. All rights reserved.
-      </p>
-    </div>
-
-  </div>
-</body>
+  </body>
 </html>
       `,
-      attachments: [
-        {
-          filename: `NAPLAN-Prep-Kit-${yearLevel.replace(" ", "-")}.pdf`,
-          content: pdfBuffer.toString("base64"),
-        },
-      ],
     });
 
-    return NextResponse.json({ success: true, message: "Kit sent successfully!" });
+    return NextResponse.json({ success: true, message: "Kit links sent successfully" });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending kit links email:", error);
     return NextResponse.json({ error: "Failed to send email. Please try again." }, { status: 500 });
   }
 }

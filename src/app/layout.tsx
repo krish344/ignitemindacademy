@@ -3,6 +3,7 @@ import './globals.css';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import TrackingEvents from '@/components/analytics/TrackingEvents';
+import TopNav from '@/components/layout/TopNav';
 
 export const metadata: Metadata = {
   title: {
@@ -60,28 +61,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
         <GoogleTag />
         <TrackingEvents />
-        <nav className="bg-white shadow-sm border-b border-orange-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex items-center">
-                <a href="/" className="text-2xl font-bold text-orange-600">
-                  IgniteMind Academy
-                </a>
-              </div>
-              <div className="flex items-center space-x-4">
-                <a href="/resources" className="text-gray-600 hover:text-orange-600 px-3 py-2 rounded-md font-medium">
-                  Resources
-                </a>
-                <a href="/dashboard" className="text-gray-600 hover:text-orange-600 px-3 py-2 rounded-md font-medium">
-                  Dashboard
-                </a>
-                <a href="/admin" className="text-gray-600 hover:text-orange-600 px-3 py-2 rounded-md font-medium">
-                  Admin
-                </a>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <TopNav />
         <main>{children}</main>
         <WhatsAppButton />
       </body>
