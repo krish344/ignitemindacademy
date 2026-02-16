@@ -44,10 +44,13 @@ npm install
 cp .env.local.example .env.local
 \`\`\`
 
-4. Update `.env.local` with your Neon database connection string:
+4. Update `.env.local` with required values:
 \`\`\`env
 DATABASE_URL=your_neon_connection_string
 RESEND_API_KEY=your_resend_api_key
+
+# Google Analytics (GA4)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-R86B7P2EWR
 \`\`\`
 
 5. Initialize the database:
