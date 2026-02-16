@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { site } from "@/lib/site";
 
-const gmailUser = process.env.GMAIL_USER;
-const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+const gmailUser = process.env.GMAIL_USER || process.env.GMAIL_EMAIL;
+const gmailAppPassword = process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASSWORD;
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 export async function POST(request: Request) {
   try {
     if (!gmailUser || !gmailAppPassword) {
-      return NextResponse.json({ error: "Email service is not configured" }, { status: 500 });
+      return NextResponse.json({ error: "Email service is not configured. Set GMAIL_USER/GMAIL_APP_PASSWORD in Netlify." }, { status: 500 });
     }
 
     const body = await request.json();
