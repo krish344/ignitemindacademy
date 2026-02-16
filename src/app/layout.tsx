@@ -4,6 +4,7 @@ import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import TrackingEvents from '@/components/analytics/TrackingEvents';
 import TopNav from '@/components/layout/TopNav';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: {
@@ -64,6 +65,7 @@ export default function RootLayout({
         <TopNav />
         <main>{children}</main>
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
