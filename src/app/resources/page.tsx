@@ -121,96 +121,58 @@ export default function ResourcesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50">
-      {/* Header */}
-      <header className="bg-white border-b border-orange-100">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-10 w-10">
-              <Image src="/logo.png" alt="IgniteMind Academy" fill className="object-contain" />
-            </div>
-            <span className="font-bold text-xl text-gray-900">IgniteMind Academy</span>
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link href="/resources" className="text-orange-600 font-semibold">
-              Resources
-            </Link>
-            <Link href="/dashboard" className="text-gray-600 hover:text-orange-600">
-              Dashboard
-            </Link>
-            <Link href="/book" className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
-              Book Now
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16">
+      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">📚 Free Study Resources</h1>
-          <p className="text-xl opacity-90 max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4">📚 Free Study Resources</h1>
+          <p className="text-base sm:text-xl opacity-90 max-w-2xl mx-auto">
             Download free NAPLAN practice materials, study notes, and worksheets organized by Year level and Subject.
           </p>
         </div>
       </div>
 
-      {/* QR Code Banner */}
-      <div className="bg-white border-b border-orange-100 py-8">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-8">
-          <div className="flex items-center gap-6">
-            <div className="relative h-48 w-48">
-              <Image src="/qr/ignitemind-qr.jpg" alt="QR Code" fill className="object-contain rounded-lg" />
-            </div>
-            <div>
-              <p className="text-orange-600 font-bold text-xl">@ignitemind27</p>
-            </div>
+      <div className="bg-white border-b border-orange-100 py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center sm:text-left">
+          <div className="relative h-32 w-32 sm:h-48 sm:w-48">
+            <Image src="/qr/ignitemind-qr.jpg" alt="QR Code" fill className="object-contain rounded-lg" />
+          </div>
+          <div>
+            <p className="text-orange-600 font-bold text-lg sm:text-xl">@ignitemind27</p>
           </div>
         </div>
       </div>
 
-      {/* Resources Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="space-y-12">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:py-12">
+        <div className="space-y-10 sm:space-y-12">
           {resources.map((yearGroup) => (
             <div key={yearGroup.year} className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              {/* Year Header */}
-              <div className="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4">
-                <h2 className="text-2xl font-bold text-white">{yearGroup.year}</h2>
-                <p className="text-white/80">{yearGroup.description}</p>
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 px-5 sm:px-6 py-4">
+                <h2 className="text-xl sm:text-2xl font-bold text-white">{yearGroup.year}</h2>
+                <p className="text-white/80 text-sm sm:text-base">{yearGroup.description}</p>
               </div>
 
-              {/* Subjects */}
-              <div className="p-6">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="p-5 sm:p-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
                   {yearGroup.subjects.map((subject) => (
-                    <div key={subject.name} className="border border-gray-200 rounded-xl p-5 hover:border-orange-300 hover:shadow-md transition-all">
+                    <div key={subject.name} className="border border-gray-200 rounded-xl p-4 sm:p-5 hover:border-orange-300 hover:shadow-md transition-all">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="text-3xl">{subject.icon}</span>
-                        <h3 className="text-lg font-semibold text-gray-900">{subject.name}</h3>
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900">{subject.name}</h3>
                       </div>
                       <ul className="space-y-3">
                         {subject.topics.map((topic) => (
                           <li key={topic.name}>
-                            {topic.type === 'Coming Soon' ? (
-                              <div className="flex items-center gap-2 text-gray-500">
-                                <span className="w-2 h-2 bg-gray-300 rounded-full"></span>
-                                {topic.name}
-                                <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">Coming Soon</span>
-                              </div>
-                            ) : (
-                              <a
-                                href={`/pdfs/${topic.file}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-orange-600 hover:text-orange-700 hover:underline"
-                              >
-                                <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-                                {topic.name}
-                                <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">
-                                  📥 Download
-                                </span>
-                              </a>
-                            )}
+                            <a
+                              href={`/pdfs/${topic.file}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-start gap-2 text-orange-600 hover:text-orange-700 hover:underline"
+                            >
+                              <span className="w-2 h-2 bg-orange-500 rounded-full mt-2"></span>
+                              <span className="text-sm">{topic.name}</span>
+                              <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full whitespace-nowrap">
+                                📥 Download
+                              </span>
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -222,13 +184,12 @@ export default function ResourcesPage() {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Need Personalized Tutoring?</h2>
-          <p className="text-lg opacity-90 mb-6">
+        <div className="mt-12 sm:mt-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-6 sm:p-8 text-center text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Need Personalized Tutoring?</h2>
+          <p className="text-base sm:text-lg opacity-90 mb-6">
             Get expert guidance from our certified NAPLAN tutors.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link
               href="/book"
               className="px-8 py-3 bg-white text-orange-600 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
@@ -244,23 +205,6 @@ export default function ResourcesPage() {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="text-2xl">🧠</span>
-            <span className="font-bold text-xl">IgniteMind Academy</span>
-          </div>
-          <p className="text-gray-400 mb-4">Expert NAPLAN Tutoring for Years 3, 5, 7 & 9</p>
-          <div className="flex justify-center gap-6 text-gray-400 text-sm">
-            <a href="https://instagram.com/ignitemind27" target="_blank" className="hover:text-orange-400">
-              📷 @ignitemind27
-            </a>
-            <span>📧 ignitemind60@gmail.com</span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

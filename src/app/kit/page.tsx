@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -49,21 +48,19 @@ export default function NAPLANKitPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-3xl shadow-xl p-8 md:p-12 max-w-lg w-full text-center"
+          className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-12 max-w-lg w-full text-center"
         >
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <span className="text-4xl">✅</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            Check Your Email!
-          </h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Check Your Email!</h1>
           <p className="text-gray-600 mb-6">
             We've sent the <strong>Comprehensive NAPLAN Preparation Kit</strong> to{" "}
-            <span className="font-semibold text-orange-600">{email}</span>
+            <span className="font-semibold text-orange-600 break-all">{email}</span>
           </p>
           <div className="bg-orange-50 rounded-xl p-6 mb-6">
             <h3 className="font-semibold text-gray-900 mb-3">What's Inside:</h3>
-            <ul className="text-left text-gray-600 space-y-2">
+            <ul className="text-left text-gray-600 space-y-2 text-sm sm:text-base">
               <li>📚 50+ Practice Questions</li>
               <li>💡 Proven Study Tips</li>
               <li>🎯 Exam Strategies</li>
@@ -72,10 +69,7 @@ export default function NAPLANKitPage() {
           </div>
           <p className="text-sm text-gray-500 mb-6">
             Can't find the email? Check your spam folder or{" "}
-            <button
-              onClick={() => setIsSuccess(false)}
-              className="text-orange-600 hover:underline"
-            >
+            <button onClick={() => setIsSuccess(false)} className="text-orange-600 hover:underline">
               try again
             </button>
           </p>
@@ -92,97 +86,55 @@ export default function NAPLANKitPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-10 w-10">
-              <Image src="/logo.png" alt={site.name} fill className="object-contain" />
-            </div>
-            <span className="font-bold text-gray-900">{site.name}</span>
-          </Link>
-          <Link href="/" className="text-gray-600 hover:text-orange-500">
-            ← Back
-          </Link>
-        </div>
-      </header>
-
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left - Content */}
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <span className="inline-block px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold mb-6">
                 🎯 Free Download
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Comprehensive{" "}
-                <span className="text-orange-500">NAPLAN Preparation Kit</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Comprehensive <span className="text-orange-500">NAPLAN Preparation Kit</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Get our complete preparation guide with practice questions, study
-                tips, and exam strategies — everything your child needs to excel in
-                NAPLAN!
+              <p className="text-base sm:text-xl text-gray-600 mb-8">
+                Get our complete preparation guide with practice questions, study tips, and exam strategies — everything your child needs to excel in NAPLAN!
               </p>
 
-              {/* What's Inside */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  📦 What's Inside the Kit:
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-6 mb-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">📦 What's Inside the Kit:</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">📚</span>
                     <div>
-                      <h4 className="font-semibold text-gray-900">
-                        50+ Practice Questions
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        Real NAPLAN-style questions
-                      </p>
+                      <h4 className="font-semibold text-gray-900">50+ Practice Questions</h4>
+                      <p className="text-sm text-gray-500">Real NAPLAN-style questions</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">💡</span>
                     <div>
-                      <h4 className="font-semibold text-gray-900">
-                        Proven Study Tips
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        Expert strategies that work
-                      </p>
+                      <h4 className="font-semibold text-gray-900">Proven Study Tips</h4>
+                      <p className="text-sm text-gray-500">Expert strategies that work</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">🎯</span>
                     <div>
-                      <h4 className="font-semibold text-gray-900">
-                        Exam Strategies
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        Time management & more
-                      </p>
+                      <h4 className="font-semibold text-gray-900">Exam Strategies</h4>
+                      <p className="text-sm text-gray-500">Time management & more</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">📅</span>
                     <div>
-                      <h4 className="font-semibold text-gray-900">
-                        Study Schedule
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        4-week preparation plan
-                      </p>
+                      <h4 className="font-semibold text-gray-900">Study Schedule</h4>
+                      <p className="text-sm text-gray-500">4-week preparation plan</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Trust Signals */}
-              <div className="flex items-center gap-6 text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-gray-600 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">⭐</span>
                   <span>2,000+ downloads</span>
@@ -195,35 +147,16 @@ export default function NAPLANKitPage() {
             </motion.div>
           </div>
 
-          {/* Right - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="bg-white rounded-3xl shadow-xl p-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8">
               <div className="text-center mb-6">
-                <div className="relative h-16 w-auto mx-auto mb-4">
-                  <Image
-                    src="/logo.png"
-                    alt={site.name}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Get Your Free Kit
-                </h2>
-                <p className="text-gray-600">
-                  Enter your details and we'll email it to you instantly!
-                </p>
+                <h2 className="text-2xl font-bold text-gray-900">Get Your Free Kit</h2>
+                <p className="text-gray-600">Enter your details and we'll email resource links instantly.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Your Name
-                  </label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
                   <input
                     type="text"
                     value={name}
@@ -235,9 +168,7 @@ export default function NAPLANKitPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address
-                  </label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                   <input
                     type="email"
                     value={email}
@@ -249,9 +180,7 @@ export default function NAPLANKitPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Year Level
-                  </label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Year Level</label>
                   <select
                     value={yearLevel}
                     onChange={(e) => setYearLevel(e.target.value)}
@@ -264,11 +193,7 @@ export default function NAPLANKitPage() {
                   </select>
                 </div>
 
-                {error && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
-                    {error}
-                  </div>
-                )}
+                {error && <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">{error}</div>}
 
                 <motion.button
                   type="submit"
@@ -283,19 +208,19 @@ export default function NAPLANKitPage() {
                       Sending...
                     </>
                   ) : (
-                    <>
-                      📧 Send Me the Kit
-                    </>
+                    <>📧 Send Me the Kit</>
                   )}
                 </motion.button>
 
-                <p className="text-xs text-gray-500 text-center">
-                  We respect your privacy. Unsubscribe anytime.
-                </p>
+                <p className="text-xs text-gray-500 text-center">We respect your privacy. Unsubscribe anytime.</p>
               </form>
             </div>
           </motion.div>
         </div>
+      </div>
+
+      <div className="px-4 pb-8 text-center text-sm">
+        <Link href="/" className="text-gray-600 hover:text-orange-500">← Back to Home</Link>
       </div>
     </div>
   );

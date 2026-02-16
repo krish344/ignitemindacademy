@@ -102,9 +102,9 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-        <div className="flex gap-4">
+        <div className="flex gap-2 sm:gap-4">
           <button
             onClick={fetchData}
             disabled={loading}
@@ -128,8 +128,8 @@ export default function AdminDashboard() {
       )}
 
       {/* Tab Navigation */}
-      <div className="mb-6 border-b border-gray-200">
-        <nav className="-mb-px flex space-x-8">
+      <div className="mb-6 border-b border-gray-200 overflow-x-auto">
+        <nav className="-mb-px flex space-x-6 min-w-max">
           {['overview', 'students', 'results', 'contact'].map((tab) => (
             <button
               key={tab}

@@ -345,8 +345,8 @@ function QuizContent() {
       {/* Quiz Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
               <h1 className="text-xl font-bold text-gray-900">📝 Quiz</h1>
               <span className="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium">
                 {selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1)}
@@ -359,7 +359,7 @@ function QuizContent() {
               </span>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
               <div className="text-sm text-gray-600">
                 <span className="font-semibold">{Object.values(answers).filter((a) => a !== null).length}</span>
                 /{questions.length} answered
@@ -375,7 +375,7 @@ function QuizContent() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="max-w-7xl mx-auto px-4 py-6 pb-24 xl:pb-6">
         <div className="flex gap-6">
           {/* Question Content */}
           <div className="flex-1">

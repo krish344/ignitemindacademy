@@ -111,13 +111,13 @@ export default function BookPageClient() {
           </SectionHeading>
 
           <div className="mx-auto mt-10 max-w-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 sm:p-8 shadow-sm">
               {/* Booking Type */}
               <div>
                 <label className="block text-sm font-semibold text-slate-900 mb-2">
                   What would you like to book? *
                 </label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <label className={`relative flex cursor-pointer items-center justify-center rounded-xl border-2 p-4 transition-all ${formData.bookingType === "diagnostic" ? "border-orange-500 bg-orange-100" : "border-orange-200 bg-orange-50 hover:border-orange-500"}`}>
                     <input
                       type="radio"
