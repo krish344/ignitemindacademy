@@ -34,13 +34,13 @@ export default function Hero() {
       <ParticleBackground />
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center pt-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-16 sm:pt-20 pb-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 px-2">
             Master NAPLAN.
             <br />
             <span className="text-orange-300">Unlock Your Potential.</span>
@@ -52,21 +52,21 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="text-xl md:text-2xl text-white/90 mb-10"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-10 px-4"
           >
             {subtitles[subtitleIndex]}
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Link
               href={site.bookingLinks.diagnostic}
-              className="px-8 py-4 bg-white text-orange-600 font-bold rounded-full text-lg hover:bg-orange-100 transition-all transform hover:scale-105 shadow-lg"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-orange-600 font-bold rounded-full text-base sm:text-lg hover:bg-orange-100 transition-all transform hover:scale-105 shadow-lg min-h-[48px]"
             >
               📊 {site.primaryCtas.diagnostic}
             </Link>
             <Link
               href={site.bookingLinks.trial}
-              className="px-8 py-4 bg-orange-600/80 backdrop-blur text-white font-bold rounded-full text-lg hover:bg-orange-700 transition-all transform hover:scale-105 border-2 border-orange-400"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-600/80 backdrop-blur text-white font-bold rounded-full text-base sm:text-lg hover:bg-orange-700 transition-all transform hover:scale-105 border-2 border-orange-400 min-h-[48px]"
             >
               🎯 {site.primaryCtas.trial}
             </Link>
@@ -78,7 +78,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
+          className="mt-12 sm:mt-16 grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 max-w-3xl mx-auto px-2"
         >
           {[
             { value: "500+", label: "Students" },
@@ -90,10 +90,10 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8 + i * 0.1 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+              className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 min-w-0"
             >
-              <div className="text-3xl font-bold text-white">{stat.value}</div>
-              <div className="text-white/70 text-sm">{stat.label}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white break-words leading-tight">{stat.value}</div>
+              <div className="text-white/70 text-xs sm:text-sm break-words mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
