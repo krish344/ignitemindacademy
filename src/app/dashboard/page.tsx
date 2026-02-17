@@ -100,18 +100,20 @@ function DashboardContent({
   onNewQuiz,
   quizResults,
   showAnalysis,
-  onToggleAnalysis
+  onToggleAnalysis,
+  onLogout
 }: { 
   studentInfo: StudentInfo; 
   onNewQuiz: () => void;
   quizResults: QuizResult[];
   showAnalysis: boolean;
   onToggleAnalysis: () => void;
+  onLogout: () => void;
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
       {/* Header */}
-      <DashboardHeader studentInfo={studentInfo} onLogout={handleLogout} />
+      <DashboardHeader studentInfo={studentInfo} onLogout={onLogout} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="space-y-6">
@@ -420,6 +422,7 @@ export default function DashboardPage() {
             quizResults={quizResults}
             showAnalysis={showAnalysis}
             onToggleAnalysis={() => setShowAnalysis(!showAnalysis)}
+            onLogout={handleLogout}
           />
           
           <AnimatePresence>
