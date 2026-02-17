@@ -79,15 +79,15 @@ function QuizIntakeModal({ onStart, onCancel }: { onStart: (selection: { subject
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center z-50 overflow-y-auto"
       onClick={onCancel}
     >
       <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 100, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg my-8"
+        className="w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
       >
         <QuizIntakeForm onStartQuiz={onStart} onCancel={onCancel} />
       </motion.div>

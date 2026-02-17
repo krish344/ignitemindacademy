@@ -61,25 +61,25 @@ export default function QuizIntakeForm({ onStartQuiz, onCancel }: QuizIntakeForm
       exit={{ opacity: 0, scale: 0.95 }}
       className="max-w-lg mx-auto"
     >
-      <div className="bg-white rounded-3xl shadow-xl p-8 md:p-10">
+      <div className="bg-white rounded-3xl shadow-xl p-4 md:p-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-4 md:mb-8"
         >
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            className="w-14 h-14 md:w-20 md:h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4"
           >
-            <span className="text-4xl">📝</span>
+            <span className="text-2xl md:text-4xl">📝</span>
           </motion.div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
             Quick Setup
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm md:text-base">
             What would you like to practice today?
           </p>
         </motion.div>
