@@ -14,7 +14,24 @@ const pool = new Pool({
 });
 
 export async function GET(request: Request) {
-  const client = await pool.connect();
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json(
+      { error: 'DATABASE_URL not configured' },
+      { status: 500 }
+    );
+  }
+  
+  let client;
+  try {
+    client = await pool.connect();
+  } catch (err) {
+    console.error('Database connection error:', err);
+    return NextResponse.json(
+      { error: 'Failed to connect to database', details: err instanceof Error ? err.message : 'Unknown error' },
+      { status: 500 }
+    );
+  }
+  
   try {
     const { searchParams } = new URL(request.url);
     const email = searchParams.get('email');
