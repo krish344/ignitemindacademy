@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-import { gradeLabels, GradeKey, testTypes, mcqsForGrade, Mcq } from "@/lib/quiz";
+import { gradeLabels, GradeKey, testTypes, mcqsForGradeAndTopic, Mcq } from "@/lib/quiz";
 import QuizModeSelector from "@/components/quiz/QuizModeSelector";
 import QuestionCard from "@/components/quiz/QuestionCard";
 import Timer from "@/components/quiz/Timer";
@@ -85,10 +85,10 @@ function QuizContent() {
     }
   }, [searchParams]);
 
-  // Get questions based on grade
+  // Get questions based on grade and subject
   const questions = useMemo(() => {
-    return mcqsForGrade(studentInfo.grade, "all");
-  }, [studentInfo.grade]);
+    return mcqsForGradeAndTopic(studentInfo.grade, "all", selectedSubject);
+  }, [studentInfo.grade, selectedSubject]);
 
   const question = questions[currentQuestion];
 
