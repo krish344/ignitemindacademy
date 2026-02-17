@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 const { Pool } = pg;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL?.replace('&channel_binding=require', ''),
   ssl: {
     rejectUnauthorized: false,
   },
