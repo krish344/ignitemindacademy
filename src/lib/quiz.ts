@@ -1,5 +1,5 @@
 export type GradeKey = "year3" | "year5" | "year7" | "year9";
-export type TopicKey = "number" | "algebra" | "measurement" | "geometry" | "statistics" | "grammar" | "all";
+export type TopicKey = "number" | "algebra" | "measurement" | "geometry" | "statistics" | "grammar" | "reading" | "writing" | "all";
 
 export type Mcq = {
   id: string;
