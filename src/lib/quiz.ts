@@ -56,8 +56,10 @@ export const topics: TopicKey[] = [
 ];
 
 export const testTypes = [
-  { id: "numeracy", name: "Numeracy", description: "Maths questions" },
-  { id: "grammar", name: "English Grammar", description: "Spelling, punctuation, grammar" },
+  { id: "numeracy", name: "Numeracy", description: "Maths - Number, Algebra, Measurement, Geometry, Statistics" },
+  { id: "reading", name: "Reading", description: "Comprehension, inference, vocabulary" },
+  { id: "writing", name: "Writing", description: "Creative and persuasive writing" },
+  { id: "language", name: "Language Conventions", description: "Spelling, punctuation, grammar" },
 ];
 
 // ==================== YEAR 3 ENGLISH GRAMMAR ====================
@@ -888,6 +890,94 @@ export const numeracyMcqsYear9: Mcq[] = [
   },
 ];
 
+// ==================== READING QUESTIONS ====================
+export const readingMcqs: Mcq[] = [
+  // Year 3 Reading
+  {
+    id: "y3-read-01",
+    grade: "year3",
+    topic: "reading",
+    prompt: "Read the passage and answer: What is the main idea?",
+    choices: ["The cat went to sleep", "A brave dog saved the day", "The sun came out", "Birds fly south"],
+    answerIndex: 1,
+    explanation: "The main idea is about a brave dog saving the day.",
+  },
+  // Year 5 Reading
+  {
+    id: "y5-read-01",
+    grade: "year5",
+    topic: "reading",
+    prompt: "Based on the text, what can you infer about the character's feelings?",
+    choices: ["Happy and excited", "Sad and worried", "Angry and frustrated", "Tired and sleepy"],
+    answerIndex: 1,
+    explanation: "The text shows the character was worried about the test.",
+  },
+  // Year 7 Reading
+  {
+    id: "y7-read-01",
+    grade: "year7",
+    topic: "reading",
+    prompt: "What does the author mean by 'a bolt from the blue'?",
+    choices: ["A sudden thunderstorm", "An unexpected event", "A blue bird", "Lightning strike"],
+    answerIndex: 1,
+    explanation: "It means something unexpected happened suddenly.",
+  },
+  // Year 9 Reading
+  {
+    id: "y9-read-01",
+    grade: "year9",
+    topic: "reading",
+    prompt: "Which evidence from the text best supports the main argument?",
+    choices: ["Statistics shown", "Expert quotes", "Personal anecdote", "Historical example"],
+    answerIndex: 1,
+    explanation: "Expert quotes provide the strongest evidence for the argument.",
+  },
+];
+
+// ==================== WRITING PROMPTS ====================
+export const writingMcqs: Mcq[] = [
+  // Year 3 Writing
+  {
+    id: "y3-write-01",
+    grade: "year3",
+    topic: "writing",
+    prompt: "Write about your favourite animal. Include what it looks like and why you like it.",
+    choices: [],
+    answerIndex: 0,
+    explanation: "Focus on description and personal feelings.",
+  },
+  // Year 5 Writing
+  {
+    id: "y5-write-01",
+    grade: "year5",
+    topic: "writing",
+    prompt: "Write a persuasive paragraph convincing your friend to try a new food.",
+    choices: [],
+    answerIndex: 0,
+    explanation: "Use reasons, examples, and a call to action.",
+  },
+  // Year 7 Writing
+  {
+    id: "y7-write-01",
+    grade: "year7",
+    topic: "writing",
+    prompt: "Write a narrative about a time you learned something important.",
+    choices: [],
+    answerIndex: 0,
+    explanation: "Include setting, characters, problem, and resolution.",
+  },
+  // Year 9 Writing
+  {
+    id: "y9-write-01",
+    grade: "year9",
+    topic: "writing",
+    prompt: "Write a persuasive speech on whether technology helps or harms education.",
+    choices: [],
+    answerIndex: 0,
+    explanation: "Present clear arguments, evidence, and counterarguments.",
+  },
+];
+
 // ==================== COMBINED ARRAYS ====================
 export const grammarMcqs = [
   ...grammarMcqsYear3,
@@ -911,11 +1001,19 @@ export function mcqsForGrade(grade: GradeKey, topic: TopicKey) {
 }
 
 export function mcqsForGradeAndTopic(grade: GradeKey, topic: TopicKey, testType: string) {
-  // Use curated question bank
-  if (testType === "grammar") {
-    return grammarMcqs.filter((q) => q.grade === grade);
+  // Filter by test type (subject)
+  switch (testType) {
+    case "numeracy":
+      return numeracyMcqs.filter((q) => q.grade === grade);
+    case "reading":
+      // Return reading questions (placeholder - add reading question bank)
+      return readingMcqs.filter((q) => q.grade === grade);
+    case "writing":
+      // Return writing questions (placeholder - add writing question bank)
+      return writingMcqs.filter((q) => q.grade === grade);
+    case "language":
+      return grammarMcqs.filter((q) => q.grade === grade);
+    default:
+      return numeracyMcqs.filter((q) => q.grade === grade);
   }
-  const curated = getCuratedMcqs(grade);
-  if (topic === "all") return curated;
-  return curated.filter((q) => q.topic === topic);
 }
