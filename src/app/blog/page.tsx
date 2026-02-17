@@ -1,12 +1,5 @@
 "use client";
 
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Blog | IgniteMind Academy",
-  description: "Latest NAPLAN prep tips, study strategies, and educational resources for Australian students. Expert advice on excelling in NAPLAN.",
-};
-
 import { useState, useMemo } from "react";
 import { blogPosts, categories, BlogCategory } from "@/lib/blog-data";
 import { BlogCard } from "@/components/blog/BlogCard";
