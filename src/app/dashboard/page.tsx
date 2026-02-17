@@ -25,7 +25,7 @@ import {
 } from "@/lib/student-storage";
 
 // Header Component
-function DashboardHeader({ studentInfo, onLogout }: { studentInfo: StudentInfo | null; onLogout: () => void }) {
+function DashboardHeader({ studentInfo }: { studentInfo: StudentInfo | null }) {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,13 +63,6 @@ function DashboardHeader({ studentInfo, onLogout }: { studentInfo: StudentInfo |
                   <div className="font-medium text-gray-900">{studentInfo.name}</div>
                   <div className="text-xs text-gray-500">Year {studentInfo.year}</div>
                 </div>
-                <button
-                  onClick={onLogout}
-                  className="text-sm text-gray-500 hover:text-red-500 transition-colors ml-2"
-                  title="Switch Student"
-                >
-                  🔄
-                </button>
               </div>
             )}
           </div>
@@ -86,7 +79,7 @@ function QuizIntakeModal({ onStart, onCancel }: { onStart: (selection: { subject
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto"
       onClick={onCancel}
     >
       <motion.div
@@ -94,7 +87,7 @@ function QuizIntakeModal({ onStart, onCancel }: { onStart: (selection: { subject
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg"
+        className="w-full max-w-lg my-8"
       >
         <QuizIntakeForm onStartQuiz={onStart} onCancel={onCancel} />
       </motion.div>
@@ -119,7 +112,7 @@ function DashboardContent({
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
       {/* Header */}
-      <DashboardHeader studentInfo={studentInfo} onLogout={() => {}} />
+      <DashboardHeader studentInfo={studentInfo} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="space-y-6">
