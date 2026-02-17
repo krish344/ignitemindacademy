@@ -1,12 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "Admin Login | IgniteMind Academy",
-  robots: { index: false },
-};
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
