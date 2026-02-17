@@ -94,15 +94,30 @@ export const year5NumeracyMcqs: Mcq[] = [
 
 // ==================== YEAR 7 NUMERACY ====================
 export const year7NumeracyMcqs: Mcq[] = [
-  // Number & Algebra
+  // Number
   createMcq('y7-num-001', 'year7', 'number', 'What is -5 + 3?', ['-2', '2', '-8', '8'], 0, '-5 + 3 = -2'),
   createMcq('y7-num-002', 'year7', 'number', 'What is (-4) × (-3)?', ['-12', '12', '-7', '7'], 1, 'Negative × negative = positive'),
-  createMcq('y7-num-003', 'year7', 'algebra', 'Simplify: 3x + 2x', ['5x', '5x²', '6x', 'x'], 0, '3x + 2x = 5x'),
-  createMcq('y7-num-004', 'year7', 'algebra', 'If x = 2, what is 4x + 3?', ['8', '11', '9', '14'], 1, '4(2) + 3 = 8 + 3 = 11'),
-  createMcq('y7-num-005', 'year7', 'algebra', 'Solve: x + 5 = 12', ['x = 7', 'x = 17', 'x = 6', 'x = 7'], 0, 'x = 12 - 5 = 7'),
-  createMcq('y7-num-006', 'year7', 'algebra', 'What is 2⁴?', ['8', '16', '6', '24'], 1, '2⁴ = 2 × 2 × 2 × 2 = 16'),
   createMcq('y7-num-007', 'year7', 'number', 'What is 25% of 80?', ['20', '25', '30', '15'], 0, '25% = 1/4, so 80 ÷ 4 = 20'),
   createMcq('y7-num-008', 'year7', 'number', 'What is 3/4 as a decimal?', ['0.34', '0.75', '0.5', '0.25'], 1, '3/4 = 75/100 = 0.75'),
+  createMcq('y7-num-009', 'year7', 'number', 'What is -7 - 4?', ['-3', '-11', '3', '11'], 1, '-7 - 4 = -11'),
+  createMcq('y7-num-010', 'year7', 'number', 'What is 144 ÷ 12?', ['10', '12', '14', '11'], 1, '144 ÷ 12 = 12'),
+
+  // Year 7 Algebra
+  createMcq('y7-alg-001', 'year7', 'algebra', 'Simplify: 3x + 2x', ['5x', '5x²', '6x', 'x'], 0, '3x + 2x = 5x'),
+  createMcq('y7-alg-002', 'year7', 'algebra', 'If x = 2, what is 4x + 3?', ['8', '11', '9', '14'], 1, '4(2) + 3 = 8 + 3 = 11'),
+  createMcq('y7-alg-003', 'year7', 'algebra', 'Solve: x + 5 = 12', ['x = 7', 'x = 17', 'x = 6', 'x = 7'], 0, 'x = 12 - 5 = 7'),
+  createMcq('y7-alg-004', 'year7', 'algebra', 'What is 2⁴?', ['8', '16', '6', '24'], 1, '2⁴ = 2 × 2 × 2 × 2 = 16'),
+  createMcq('y7-alg-005', 'year7', 'algebra', 'Simplify: 5a - 2a', ['3a', '7a', '3a²', '10a'], 0, '5a - 2a = 3a'),
+  createMcq('y7-alg-006', 'year7', 'algebra', 'If y = 3, what is 2y²?', ['6', '18', '36', '12'], 1, '2 × 3² = 2 × 9 = 18'),
+  createMcq('y7-alg-007', 'year7', 'algebra', 'Solve: x - 4 = 9', ['x = 5', 'x = 13', 'x = 36', 'x = -5'], 1, 'x = 9 + 4 = 13'),
+  createMcq('y7-alg-008', 'year7', 'algebra', 'Expand: 4(x + 2)', ['4x + 2', '4x + 8', '4x + 6', 'x + 8'], 1, '4x + 8'),
+  createMcq('y7-alg-009', 'year7', 'algebra', 'Simplify: 3m + 4 + m - 2', ['4m + 2', '4m + 6', '3m + 2', '2m + 4'], 0, '3m + m = 4m, 4 - 2 = 2'),
+  createMcq('y7-alg-010', 'year7', 'algebra', 'What is the next number: 2, 4, 8, 16, ?', ['24', '32', '20', '28'], 1, 'Pattern: ×2 each time'),
+  createMcq('y7-alg-011', 'year7', 'algebra', 'Solve: 3x = 21', ['x = 7', 'x = 18', 'x = 24', 'x = 3'], 0, 'x = 21 ÷ 3 = 7'),
+  createMcq('y7-alg-012', 'year7', 'algebra', 'Simplify: x + x + x', ['3x', 'x³', 'x + 3', 'x'], 0, 'x + x + x = 3x'),
+  createMcq('y7-alg-013', 'year7', 'algebra', 'If a = 5, what is a + 8?', ['13', '58', '40', '15'], 0, '5 + 8 = 13'),
+  createMcq('y7-alg-014', 'year7', 'algebra', 'What is 5²?', ['10', '25', '50', '15'], 1, '5² = 5 × 5 = 25'),
+  createMcq('y7-alg-015', 'year7', 'algebra', 'Solve: x/4 = 5', ['x = 20', 'x = 1.25', 'x = 9', 'x = 9'], 0, 'x = 5 × 4 = 20'),
 
   // Measurement & Geometry
   createMcq('y7-meas-001', 'year7', 'measurement', 'What is the area of a triangle with base 6cm and height 4cm?', ['12cm²', '24cm²', '10cm²', '48cm²'], 0, 'Area = ½ × 6 × 4 = 12cm²'),
@@ -113,12 +128,27 @@ export const year7NumeracyMcqs: Mcq[] = [
 
 // ==================== YEAR 9 NUMERACY ====================
 export const year9NumeracyMcqs: Mcq[] = [
-  // Algebra
+  // Year 9 Algebra
   createMcq('y9-alg-001', 'year9', 'algebra', 'Expand: 3(x + 4)', ['3x + 4', '3x + 12', '3x + 7', 'x + 12'], 1, '3 × x + 3 × 4 = 3x + 12'),
   createMcq('y9-alg-002', 'year9', 'algebra', 'Simplify: 2(a + 3) - a', ['a + 6', '3a + 3', 'a + 3', '2a + 6'], 0, '2a + 6 - a = a + 6'),
   createMcq('y9-alg-003', 'year9', 'algebra', 'Solve: 2x - 5 = 9', ['x = 7', 'x = 2', 'x = 14', 'x = -7'], 0, '2x = 14, x = 7'),
   createMcq('y9-alg-004', 'year9', 'algebra', 'What is the gradient of y = 3x + 2?', ['2', '3', '5', '1'], 1, 'The gradient is 3.'),
   createMcq('y9-alg-005', 'year9', 'algebra', 'Factorise: x² - 9', ['(x-3)(x+3)', '(x-9)(x+1)', '(x-3)²', '(x+3)²'], 0, 'x² - 9 = (x-3)(x+3)'),
+  createMcq('y9-alg-006', 'year9', 'algebra', 'Expand: 5(2x - 3)', ['10x - 15', '10x - 3', '7x - 8', '10x + 15'], 0, '10x - 15'),
+  createMcq('y9-alg-007', 'year9', 'algebra', 'Solve: 3x + 7 = 22', ['x = 5', 'x = 15', 'x = 3', 'x = 29'], 0, '3x = 15, x = 5'),
+  createMcq('y9-alg-008', 'year9', 'algebra', 'Factorise: x² - 4', ['(x-2)(x+2)', '(x-2)²', '(x-4)(x+1)', '(x+2)²'], 0, 'x² - 4 = (x-2)(x+2)'),
+  createMcq('y9-alg-009', 'year9', 'algebra', 'What is the y-intercept of y = 3x + 5?', ['3', '5', '8', '0'], 1, 'The y-intercept is 5.'),
+  createMcq('y9-alg-010', 'year9', 'algebra', 'Simplify: 4x - 2x + x', ['3x', '7x', '2x', '5x'], 0, '4x - 2x + x = 3x'),
+  createMcq('y9-alg-011', 'year9', 'algebra', 'Solve: x/3 + 2 = 5', ['x = 3', 'x = 9', 'x = 21', 'x = 15'], 1, 'x/3 = 3, x = 9'),
+  createMcq('y9-alg-012', 'year9', 'algebra', 'Expand: (x + 2)(x + 3)', ['x² + 5x + 6', 'x² + x + 6', '2x + 5', 'x² + 2x + 3'], 0, 'x² + 3x + 2x + 6 = x² + 5x + 6'),
+  createMcq('y9-alg-013', 'year9', 'algebra', 'Factorise: 2x² + 6x', ['2x(x + 3)', '(2x + 6)x', '2(x² + 3x)', 'x(2x + 6)'], 0, '2x(x + 3)'),
+  createMcq('y9-alg-014', 'year9', 'algebra', 'If y = 2x - 1 and x = 4, find y', ['7', '8', '6', '9'], 0, 'y = 2(4) - 1 = 8 - 1 = 7'),
+  createMcq('y9-alg-015', 'year9', 'algebra', 'What is the gradient of y = -2x + 4?', ['-2', '4', '2', '0'], 0, 'The gradient is -2.'),
+  createMcq('y9-alg-016', 'year9', 'algebra', 'Solve: 4(x - 2) = 16', ['x = 6', 'x = 4', 'x = 8', 'x = 2'], 0, '4x - 8 = 16, 4x = 24, x = 6'),
+  createMcq('y9-alg-017', 'year9', 'algebra', 'Factorise: x² - 16', ['(x-4)(x+4)', '(x-4)²', '(x-8)(x+2)', '(x+4)²'], 0, 'x² - 16 = (x-4)(x+4)'),
+  createMcq('y9-alg-018', 'year9', 'algebra', 'What is the equation of a line with gradient 2 passing through (0, 3)?', ['y = 2x + 3', 'y = 3x + 2', 'y = 2x - 3', 'y = x + 3'], 0, 'y = mx + c, so y = 2x + 3'),
+  createMcq('y9-alg-019', 'year9', 'algebra', 'Simplify: (x³)²', ['x⁵', 'x⁶', '2x³', 'x'], 1, '(x³)² = x³×² = x⁶'),
+  createMcq('y9-alg-020', 'year9', 'algebra', 'Solve: 5x - 3 = 2x + 9', ['x = 4', 'x = 3', 'x = 6', 'x = 12'], 0, '3x = 12, x = 4'),
 
   // Statistics & Probability
   createMcq('y9-stat-001', 'year9', 'statistics', 'What is the probability of rolling a 6 on a fair die?', ['1/6', '1/2', '1/3', '6/1'], 0, 'One outcome out of 6.'),
