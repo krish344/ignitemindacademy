@@ -11,6 +11,24 @@ export type Mcq = {
   explanation: string;
 };
 
+// Import curated question bank
+import { curatedMcqs, mcqsByGrade, numeracyMcqs, grammarAllMcqs, coverageReport } from '@/content/question-bank/curated-bank';
+
+// Re-export for external use
+export { curatedMcqs, mcqsByGrade, numeracyMcqs, grammarAllMcqs, coverageReport };
+
+// Function to get curated questions by grade
+export function getCuratedMcqs(grade: GradeKey) {
+  return mcqsByGrade[grade] || [];
+}
+
+// Function to get curated questions by grade and topic
+export function getCuratedMcqsByTopic(grade: GradeKey, topic: TopicKey) {
+  const gradeMcqs = mcqsByGrade[grade] || [];
+  if (topic === 'all') return gradeMcqs;
+  return gradeMcqs.filter(q => q.topic === topic);
+}
+
 export const gradeLabels: Record<GradeKey, string> = {
   year3: "Year 3",
   year5: "Year 5",
