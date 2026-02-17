@@ -44,6 +44,8 @@ export const topicLabels: Record<TopicKey, string> = {
   geometry: "Geometry",
   statistics: "Statistics & Probability",
   grammar: "English Grammar",
+  reading: "Reading",
+  writing: "Writing",
 };
 
 export const topics: TopicKey[] = [
