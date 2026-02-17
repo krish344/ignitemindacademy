@@ -39,3 +39,6 @@ next-env.d.ts
 
 # Drizzle
 drizzle/
+
+# Social images (generated locally)
+public/social-images/
