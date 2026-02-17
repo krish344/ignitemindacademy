@@ -904,16 +904,18 @@ export const mcqs = [
 ];
 
 export function mcqsForGrade(grade: GradeKey, topic: TopicKey) {
-  const base = mcqs.filter((q) => q.grade === grade);
-  if (topic === "all") return base;
-  return base.filter((q) => q.topic === topic);
+  // Use curated question bank
+  const curated = getCuratedMcqs(grade);
+  if (topic === "all") return curated;
+  return curated.filter((q) => q.topic === topic);
 }
 
 export function mcqsForGradeAndTopic(grade: GradeKey, topic: TopicKey, testType: string) {
+  // Use curated question bank
   if (testType === "grammar") {
     return grammarMcqs.filter((q) => q.grade === grade);
   }
-  const base = mcqs.filter((q) => q.grade === grade);
-  if (topic === "all") return base;
-  return base.filter((q) => q.topic === topic);
+  const curated = getCuratedMcqs(grade);
+  if (topic === "all") return curated;
+  return curated.filter((q) => q.topic === topic);
 }
