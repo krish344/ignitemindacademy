@@ -524,6 +524,143 @@ function CTASection() {
   );
 }
 
+// Pricing Section
+function PricingSection() {
+  const plans = [
+    {
+      name: "Practice Plan",
+      price: "$29",
+      period: "/week",
+      description: "Perfect for self-paced learners",
+      features: [
+        "📝 Unlimited practice quizzes",
+        "📊 Progress tracking",
+        "📱 Mobile access",
+        "🎮 Gamified learning",
+        "❓ 500+ NAPLAN questions",
+      ],
+      cta: "Get Started",
+      popular: false,
+      color: "from-gray-500 to-gray-600",
+    },
+    {
+      name: "Tutoring Plan",
+      price: "$49",
+      period: "/week",
+      description: "Most popular choice for NAPLAN success",
+      features: [
+        "👨‍🏫 Weekly live tutoring session",
+        "📝 Unlimited practice quizzes",
+        "📊 Progress tracking & reports",
+        "📱 Mobile access",
+        "🎮 Gamified learning",
+        "❓ 1000+ NAPLAN questions",
+        "💬 WhatsApp support",
+      ],
+      cta: "Start Free Trial",
+      popular: true,
+      color: "from-orange-500 to-red-500",
+    },
+    {
+      name: "Intensive Plan",
+      price: "$79",
+      period: "/week",
+      description: "Maximum results in minimum time",
+      features: [
+        "👨‍🏫 2x Weekly live tutoring",
+        "📝 Unlimited practice quizzes",
+        "📊 Detailed progress reports",
+        "📱 Priority mobile support",
+        "🎮 Gamified learning",
+        "❓ All NAPLAN question bank",
+        "💬 24/7 WhatsApp support",
+        "🎯 Personalised study plan",
+      ],
+      cta: "Book Consultation",
+      popular: false,
+      color: "from-green-500 to-emerald-600",
+    },
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div className="max-w-6xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-orange-600 text-sm font-semibold uppercase tracking-wider mb-4 block">
+            Pricing 🇦🇺
+          </span>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Simple, Transparent <span className="text-orange-500">Pricing</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Choose the plan that works best for your family. No hidden fees.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`relative bg-white rounded-3xl shadow-xl overflow-hidden ${
+                plan.popular ? 'ring-4 ring-orange-500 transform md:-translate-y-4' : ''
+              }`}
+            >
+              {plan.popular && (
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-2 font-bold text-sm">
+                  MOST POPULAR
+                </div>
+              )}
+              
+              <div className="p-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-gray-500 text-sm mb-4">{plan.description}</p>
+                
+                <div className="flex items-baseline mb-6">
+                  <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                  <span className="text-gray-500 ml-1">{plan.period}</span>
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-600">
+                      <span className="text-green-500">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/book"
+                  className={`block w-full py-4 text-center font-bold rounded-xl transition-all ${
+                    plan.popular
+                      ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg'
+                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <p className="text-center text-gray-500 mt-8">
+          🔒 Secure payment via Stripe • Cancel anytime • First session money-back guarantee
+        </p>
+      </div>
+    </section>
+  );
+}
+
 // Footer Component
 function Footer() {
   return (
@@ -670,6 +807,9 @@ export default function Home() {
 
       {/* How It Works */}
       <HowItWorks />
+
+      {/* Pricing */}
+      <PricingSection />
 
       {/* FAQ Section */}
       <FAQSection />

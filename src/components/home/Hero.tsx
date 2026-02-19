@@ -7,10 +7,43 @@ import { useState, useEffect } from "react";
 import { site } from "@/lib/site";
 
 const subtitles = [
-  "For Students Who Want to Excel in NAPLAN",
+  "For Australian Students Who Want to Excel in NAPLAN 🇦🇺",
   "For Parents Who Want the Best for Their Children",
   "For Future Leaders Who Dare to Dream Big",
 ];
+
+// NAPLAN Countdown Banner
+function NAPLANBanner() {
+  const [daysLeft, setDaysLeft] = useState(0);
+  
+  useEffect(() => {
+    // NAPLAN 2026 dates: March 12-14
+    const naplanDate = new Date('2026-03-12');
+    const today = new Date();
+    const diff = Math.ceil((naplanDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    setDaysLeft(diff > 0 ? diff : 0);
+  }, []);
+
+  return (
+    <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 text-center sm:text-left">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">🎯</span>
+          <span className="font-bold">NAPLAN 2026:</span>
+          <span className="text-white/90">March 12-14, 2026</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="bg-white/20 px-3 py-1 rounded-full font-bold">
+            {daysLeft} days remaining
+          </span>
+          <Link href="/book" className="underline hover:text-orange-200">
+            Start preparing now →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Hero() {
   const [subtitleIndex, setSubtitleIndex] = useState(0);
@@ -23,7 +56,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <>
+      <NAPLANBanner />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 animate-pulse" />
@@ -116,6 +151,7 @@ export default function Hero() {
         <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full" />
       </motion.a>
     </section>
+    </>
   );
 }
 
