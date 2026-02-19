@@ -54,6 +54,9 @@ function DashboardHeader({ studentInfo, onLogout }: { studentInfo: StudentInfo |
                 <div className="hidden sm:block">
                   <div className="font-medium text-gray-900">{studentInfo.name}</div>
                   <div className="text-xs text-gray-500">Year {studentInfo.year}</div>
+                  {studentInfo.email && (
+                    <div className="text-xs text-gray-400">{studentInfo.email}</div>
+                  )}
                 </div>
                 <button
                   onClick={onLogout}
@@ -252,11 +255,12 @@ function WelcomeScreen({ onComplete }: { onComplete: (data: StudentInfo) => void
             e.preventDefault();
             const form = e.target as HTMLFormElement;
             const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+            const email = (form.elements.namedItem('email') as HTMLInputElement).value;
             const year = parseInt((form.elements.namedItem('year') as HTMLSelectElement).value);
             const subjectCheckboxes = form.querySelectorAll('input[name="subject"]:checked');
             const subjects = Array.from(subjectCheckboxes).map((el) => (el as HTMLInputElement).value);
             
-            onComplete({ name, year, subjects });
+            onComplete({ name, email, year, subjects });
           }}
           className="space-y-6"
         >
@@ -269,6 +273,19 @@ function WelcomeScreen({ onComplete }: { onComplete: (data: StudentInfo) => void
               name="name"
               required
               placeholder="Enter your name"
+              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="your@email.com"
               className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:outline-none transition-colors"
             />
           </div>
@@ -375,10 +392,13 @@ export default function DashboardPage() {
   const handleQuizIntakeStart = (selection: { subject: string; mode: string }) => {
     setShowQuizIntake(false);
     
-    // Navigate to quiz page with parameters
+    // Navigate to quiz page with all student parameters
     const params = new URLSearchParams({
       subject: selection.subject,
       mode: selection.mode,
+      name: studentInfo?.name || "",
+      email: studentInfo?.email || "",
+      year: studentInfo?.year?.toString() || "3",
     });
     router.push(`/quiz?${params.toString()}`);
   };

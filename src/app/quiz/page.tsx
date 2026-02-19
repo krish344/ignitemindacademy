@@ -9,7 +9,7 @@ import QuestionCard from "@/components/quiz/QuestionCard";
 import Timer from "@/components/quiz/Timer";
 import Navigator from "@/components/quiz/Navigator";
 import ResultsDashboard from "@/components/quiz/ResultsDashboard";
-import { saveQuizResult, getQuizResults, QuizResult } from "@/lib/student-storage";
+import { saveQuizResult, getQuizResults, QuizResult, getStudentInfo, saveQuizProgress, getQuizProgress, clearQuizProgress, StudentInfo } from "@/lib/student-storage";
 
 interface QuizSubmission {
   studentName: string;
@@ -48,40 +48,76 @@ function QuizContent() {
   const [startTime, setStartTime] = useState<number>(0);
   const [timeTaken, setTimeTaken] = useState<number>(0);
 
-  // Check URL params on mount to auto-advance
+  // Check URL params AND localStorage on mount
   useEffect(() => {
+    // First, try to get from localStorage
+    const storedInfo = getStudentInfo();
+    
+    // Get params from URL
     const subject = searchParams.get("subject");
     const mode = searchParams.get("mode");
     const name = searchParams.get("name");
+    const email = searchParams.get("email");
     const grade = searchParams.get("grade");
     
+    // Set subject and mode from URL
     if (subject) {
       setSelectedSubject(subject);
     }
     if (mode) {
       setSelectedMode(mode);
     }
-    if (name) {
-      setStudentInfo(prev => ({ ...prev, name }));
-    }
-    if (grade) {
+    
+    //优先使用本地存储的学生信息，如果没有则使用URL参数
+    if (storedInfo) {
+      setStudentInfo({
+        name: storedInfo.name,
+        email: storedInfo.email,
+        grade: (storedInfo.year === 3 ? "year3" : 
+                storedInfo.year === 5 ? "year5" : 
+                storedInfo.year === 7 ? "year7" : "year9") as GradeKey,
+      });
+      
+      // Auto-advance from setup to quiz if we have user info
+      if (subject && mode && name) {
+        setQuizState("mode");
+        setTimeout(() => {
+          setQuizState("quiz");
+          setStartTime(Date.now());
+        }, 500);
+      } else if (storedInfo.name) {
+        // Even without subject/mode, skip setup if we have stored info
+        // but don't auto-start quiz
+      }
+    } else if (name && email) {
+      // No stored info but have URL params - use them
       const gradeMap: Record<string, GradeKey> = {
         "3": "year3",
         "5": "year5",
         "7": "year7",
         "9": "year9",
       };
-      setStudentInfo(prev => ({ ...prev, grade: gradeMap[grade] || "year3" }));
+      setStudentInfo({
+        name: name,
+        email: email,
+        grade: gradeMap[grade || "3"] || "year3",
+      });
+      
+      // Auto-advance from setup to quiz if we have name and email
+      if (subject && mode) {
+        setQuizState("mode");
+        setTimeout(() => {
+          setQuizState("quiz");
+          setStartTime(Date.now());
+        }, 500);
+      }
     }
     
-    // Auto-advance from setup to quiz if params are present
-    if (subject && mode && name) {
-      setQuizState("mode");
-      // Then go to quiz after a brief delay
-      setTimeout(() => {
-        setQuizState("quiz");
-        setStartTime(Date.now());
-      }, 500);
+    // Check for saved quiz progress
+    const savedProgress = getQuizProgress();
+    if (savedProgress && subject && mode) {
+      setAnswers(savedProgress.answers);
+      setCurrentQuestion(savedProgress.currentQuestion);
     }
   }, [searchParams]);
 
@@ -93,7 +129,23 @@ function QuizContent() {
   const question = questions[currentQuestion];
 
   const handleAnswerSelect = (choiceIndex: number) => {
-    setAnswers((prev) => ({ ...prev, [question?.id || ""]: choiceIndex }));
+    setAnswers((prev) => {
+      const newAnswers = { ...prev, [question?.id || ""]: choiceIndex };
+      
+      // Auto-save progress to localStorage
+      if (quizState === "quiz") {
+        saveQuizProgress({
+          subject: selectedSubject,
+          mode: selectedMode,
+          grade: studentInfo.grade,
+          answers: newAnswers,
+          currentQuestion,
+          timestamp: Date.now(),
+        });
+      }
+      
+      return newAnswers;
+    });
   };
 
   const handleModeSelect = (modeId: string) => {
@@ -139,6 +191,9 @@ function QuizContent() {
       topics: [selectedSubject],
     };
     saveQuizResult(quizResult);
+    
+    // Clear quiz progress after submission
+    clearQuizProgress();
 
     try {
       const submission: QuizSubmission = {
@@ -199,10 +254,15 @@ function QuizContent() {
     }).filter((item) => item.total > 1);
   };
 
-  const isFormComplete = studentInfo.name && studentInfo.email;
+  const isFormComplete = studentInfo.name && studentInfo.email && studentInfo.email.includes("@");
 
   // Setup View
   if (quizState === "setup") {
+    // Try to get stored info for pre-fill
+    const storedInfo = getStudentInfo();
+    const currentName = studentInfo.name || storedInfo?.name || "";
+    const currentEmail = studentInfo.email || storedInfo?.email || "";
+    
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 py-8">
         <div className="max-w-2xl mx-auto px-4">
@@ -214,6 +274,9 @@ function QuizContent() {
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">📝 NAPLAN Practice Quiz</h1>
               <p className="text-gray-600">Test your knowledge and improve your skills</p>
+              {storedInfo && (
+                <p className="text-sm text-orange-600 mt-2">Welcome back, {storedInfo.name}!</p>
+              )}
             </div>
 
             <div className="space-y-6">
@@ -221,7 +284,7 @@ function QuizContent() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
                 <input
                   type="text"
-                  value={studentInfo.name}
+                  value={currentName}
                   onChange={(e) => setStudentInfo({ ...studentInfo, name: e.target.value })}
                   className="w-full rounded-xl border-2 border-gray-200 p-3 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
                   placeholder="Enter your name"
@@ -229,13 +292,14 @@ function QuizContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email <span className="text-red-500">*</span></label>
                 <input
                   type="email"
-                  value={studentInfo.email}
+                  value={currentEmail}
                   onChange={(e) => setStudentInfo({ ...studentInfo, email: e.target.value })}
                   className="w-full rounded-xl border-2 border-gray-200 p-3 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
                   placeholder="your@email.com"
+                  required
                 />
               </div>
 
