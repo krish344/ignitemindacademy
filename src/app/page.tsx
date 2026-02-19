@@ -825,9 +825,6 @@ export default function Home() {
 
       {/* WhatsApp Contact CTA Section */}
       <ContactCTASection />
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }
