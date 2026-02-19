@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SiteLayout } from "@/components/SiteLayout";
 import { Container } from "@/components/Container";
 import { site } from "@/lib/site";
 
@@ -16,7 +15,7 @@ function getWhatsAppUrl(message: string): string {
 
 export default function ContactPage() {
   return (
-    <SiteLayout>
+    <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 py-20 sm:py-28 overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px'}} />
@@ -220,6 +219,6 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
-    </SiteLayout>
+    </>
   );
 }

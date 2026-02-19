@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SiteLayout } from "@/components/SiteLayout";
 import { Container } from "@/components/Container";
 
 export const metadata: Metadata = {
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <SiteLayout>
+    <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 sm:py-28 overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px'}} />
@@ -146,6 +145,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-    </SiteLayout>
+    </>
   );
 }
