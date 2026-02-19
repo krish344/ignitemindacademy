@@ -35,7 +35,7 @@ const quizModes: QuizMode[] = [
   {
     id: "quickfire",
     name: "Quick Fire",
-    description: "Speed practice for rapid improvement",
+    description: "Speed practice for rapid score gains",
     icon: "🎯",
     duration: "5 minutes",
     features: ["Fast-paced", "Leaderboards", "Speed drills"],

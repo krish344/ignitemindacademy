@@ -118,7 +118,7 @@ export default function Hero() {
           {[
             { value: "500+", label: "Students" },
             { value: "4.9★", label: "Rating" },
-            { value: "95%", label: "Improvement" },
+            { value: "95%", label: "Score Gain" },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}

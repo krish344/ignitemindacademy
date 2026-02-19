@@ -18,7 +18,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "IgniteMind Academy",
-  "description": "Premier NAPLAN tutoring for Years 3, 5, 7 & 9 in Melbourne. Expert tutors, personalized learning, 95% improvement rate.",
+  "description": "Premier NAPLAN tutoring for Years 3, 5, 7 & 9 in Melbourne. Expert tutors, personalized learning, 95% score gain rate.",
   "url": "https://ignitemindacademy.com",
   "logo": "https://ignitemindacademy.com/logo.png",
   "image": "https://ignitemindacademy.com/hero-image.jpg",
@@ -47,7 +47,7 @@ const jsonLd = {
   "offers": {
     "@type": "Offer",
     "name": "Free NAPLAN Diagnostic Assessment",
-    "description": "Comprehensive diagnostic to identify strengths and areas for improvement",
+    "description": "Comprehensive diagnostic to identify strengths and areas for growth",
     "price": "0",
     "priceCurrency": "AUD"
   }
@@ -58,7 +58,7 @@ function StatsBar() {
   const stats = [
     { value: 500, suffix: "+", label: "Students Enrolled", duration: 2000 },
     { value: 4.9, suffix: "★", label: "Average Rating", duration: 1500 },
-    { value: 95, suffix: "%", label: "Improvement Rate", duration: 2000 },
+    { value: 95, suffix: "%", label: "Score Gain", duration: 2000 },
   ];
 
   return (
@@ -129,7 +129,7 @@ function HowItWorks() {
     {
       step: "01",
       title: "Diagnostic Assessment",
-      description: "Take our comprehensive diagnostic test to identify strengths and areas for improvement.",
+      description: "Take our comprehensive diagnostic test to identify strengths and areas for growth.",
       icon: "📊",
     },
     {
@@ -218,11 +218,11 @@ function FAQSection() {
   const faqs = [
     {
       question: "What is NAPLAN and why is it important?",
-      answer: "NAPLAN (National Assessment Program - Literacy and Numeracy) is an annual assessment for Australian students in Years 3, 5, 7, and 9. It measures fundamental skills in reading, writing, language conventions, and numeracy. NAPLAN results help identify students' strengths and areas for improvement, and are used by schools and education systems to support teaching and learning."
+      answer: "NAPLAN (National Assessment Program - Literacy and Numeracy) is an annual assessment for Australian students in Years 3, 5, 7, and 9. It measures fundamental skills in reading, writing, language conventions, and numeracy. NAPLAN results help identify students' strengths and areas for growth, and are used by schools and education systems to support teaching and learning."
     },
     {
       question: "How can IgniteMind Academy help improve NAPLAN scores?",
-      answer: "IgniteMind Academy provides personalized tutoring tailored to each student's needs. Our expert tutors identify knowledge gaps, teach effective strategies, and provide extensive practice with NAPLAN-style questions. With our structured approach and regular progress tracking, students typically see significant improvement in their scores within 2-3 months."
+      answer: "IgniteMind Academy provides personalized tutoring tailored to each student's needs. Our expert tutors identify knowledge gaps, teach effective strategies, and provide extensive practice with NAPLAN-style questions. With our structured approach and regular progress tracking, students typically see significant score gains within 2-3 months."
     },
     {
       question: "What age groups do you tutor for NAPLAN?",
@@ -246,7 +246,7 @@ function FAQSection() {
     },
     {
       question: "How do I book a free diagnostic assessment?",
-      answer: "Booking a free diagnostic is easy! Click the 'Book a Free Diagnostic' button on any page, or contact us directly via WhatsApp, email, or phone. The diagnostic takes about 45 minutes and helps us understand your child's current level and identify areas for improvement."
+      answer: "Booking a free diagnostic is easy! Click the 'Book a Free Diagnostic' button on any page, or contact us directly via WhatsApp, email, or phone. The diagnostic takes about 45 minutes and helps us understand your child's current level and identify areas for growth."
     },
     {
       question: "What is your refund or cancellation policy?",

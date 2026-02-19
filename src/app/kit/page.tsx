@@ -141,7 +141,7 @@ export default function NAPLANKitPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">🏆</span>
-                  <span>95% improvement rate</span>
+                  <span>95% score gain rate</span>
                 </div>
               </div>
             </motion.div>

@@ -136,7 +136,7 @@ export default function BookPageClient() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl">✓</span>
-                <span>95% Improvement</span>
+                <span>95% Score Gain</span>
               </div>
             </div>
           </div>

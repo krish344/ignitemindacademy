@@ -18,7 +18,7 @@ const features = [
   {
     icon: "📊",
     title: "Progress Analytics",
-    description: "Detailed insights into your strengths and areas for improvement.",
+    description: "Detailed insights into your strengths and areas for growth.",
     color: "from-green-400 to-emerald-400",
   },
   {

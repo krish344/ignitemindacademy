@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/lib/site";
-import { ContactCTASection } from "@/components/ui/ContactCTASection";
 
 export const metadata: Metadata = {
   title: "Contact Us | IgniteMind Academy",
@@ -19,53 +17,209 @@ function getWhatsAppUrl(message: string): string {
 export default function ContactPage() {
   return (
     <SiteLayout>
-      <section className="py-16 sm:py-20">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 py-20 sm:py-28 overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px'}} />
+        <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-24 h-24 bg-white/10 rounded-full animate-pulse" style={{animationDelay: '1s'}} />
+        
         <Container>
-          <SectionHeading eyebrow="Contact" title="Let’s plan the next steps">
-            Email or call — we’ll confirm availability and share a simple plan.
-          </SectionHeading>
+          <div className="relative z-10 text-center">
+            <span className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              🇦🇺 Melbourne, Victoria
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Get in Touch
+              <span className="block text-orange-200">Start Your Child's Success Story</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              Have questions? We'd love to hear from you. Reach out via any channel below.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div>
-                <div className="text-sm font-semibold text-slate-900">Email</div>
-                <a className="mt-1 block underline" href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
+      {/* Contact Options */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+        <Container>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Email Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">📧</span>
               </div>
-              <div>
-                <div className="text-sm font-semibold text-slate-900">Phone</div>
-                <a className="mt-1 block underline" href={`tel:${site.phoneE164}`}>
-                  {site.phoneDisplay}
-                </a>
-              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+              <p className="text-gray-600 mb-4">We'll respond within 24 hours</p>
+              <a
+                href={`mailto:${site.email}`}
+                className="text-orange-600 font-semibold hover:underline"
+              >
+                {site.email}
+              </a>
             </div>
 
-            <p className="mt-6 text-sm text-slate-600">
-              Include your child's year level (3/5/7/9), your suburb, and whether you prefer a
-              free diagnostic or a trial class.
-            </p>
-
-            {/* WhatsApp Direct Button */}
-            <div className="mt-6 flex flex-wrap gap-4">
+            {/* Phone Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">📞</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
+              <p className="text-gray-600 mb-4">Mon-Fri, 9AM-6PM AEST</p>
               <a
-                href={getWhatsAppUrl("Hi! I'd like to book a free diagnostic test for my child.")}
+                href={`tel:${site.phoneE164}`}
+                className="text-green-600 font-semibold hover:underline"
+              >
+                {site.phoneDisplay}
+              </a>
+            </div>
+
+            {/* WhatsApp Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-[#25D366]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">💬</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">WhatsApp</h3>
+              <p className="text-gray-600 mb-4">Quick responses, any time</p>
+              <a
+                href={getWhatsAppUrl("Hi! I'd like to learn more about NAPLAN tutoring.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#20BE5A] hover:shadow-md transition-all"
+                className="text-[#25D366] font-semibold hover:underline"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                Chat on WhatsApp
+                Start Chat
               </a>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* WhatsApp CTA Section */}
-      <ContactCTASection />
+      {/* Contact Form & Info */}
+      <section className="py-16">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                📝 Send Us a Message
+              </h2>
+              <form className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input
+                      type="text"
+                      placeholder="John Smith"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    placeholder="0412 345 678"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Student's Year Level</label>
+                  <select className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none bg-white">
+                    <option>Select year...</option>
+                    <option>Year 3</option>
+                    <option>Year 5</option>
+                    <option>Year 7</option>
+                    <option>Year 9</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                  <textarea
+                    rows={4}
+                    placeholder="Tell us about your child's learning goals..."
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl hover:shadow-lg transition-all"
+                >
+                  🚀 Send Message
+                </button>
+              </form>
+            </div>
+
+            {/* Additional Info */}
+            <div className="space-y-6">
+              <div className="bg-slate-900 rounded-2xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">📍 Our Location</h3>
+                <p className="text-slate-300 mb-4">
+                  We serve students across Melbourne and throughout Victoria with both online and in-person tutoring options.
+                </p>
+                <div className="flex items-start gap-3">
+                  <span>🏛️</span>
+                  <div>
+                    <p className="font-semibold">Melbourne, Victoria</p>
+                    <p className="text-sm text-slate-400">Australia</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">💡 What to Include</h3>
+                <p className="text-white/90 mb-4">
+                  For the fastest response, please include:
+                </p>
+                <ul className="space-y-2 text-white/90">
+                  <li>• Your child's current year level (3, 5, 7, or 9)</li>
+                  <li>• Your suburb or area in Melbourne</li>
+                  <li>• Whether you're interested in a diagnostic or trial class</li>
+                  <li>• Any specific areas you'd like to focus on</li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 className="font-bold text-gray-900 mb-4">🕐 Business Hours</h3>
+                <div className="space-y-2 text-gray-600">
+                  <p><span className="font-medium">Monday - Friday:</span> 9:00 AM - 6:00 PM</p>
+                  <p><span className="font-medium">Saturday:</span> 9:00 AM - 2:00 PM</p>
+                  <p><span className="font-medium">Sunday:</span> By appointment</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Quick Actions */}
+      <section className="py-12 bg-gray-50">
+        <Container>
+          <div className="text-center">
+            <p className="text-gray-600 mb-6">Prefer to take action now?</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="/book"
+                className="px-8 py-4 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-colors"
+              >
+                📅 Book Free Diagnostic
+              </a>
+              <a
+                href="/pricing"
+                className="px-8 py-4 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors"
+              >
+                💰 View Pricing
+              </a>
+            </div>
+          </div>
+        </Container>
+      </section>
     </SiteLayout>
   );
 }

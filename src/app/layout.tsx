@@ -10,12 +10,12 @@ export const metadata: Metadata = {
     default: 'NAPLAN Tutoring Melbourne | IgniteMind Academy',
     template: '%s | IgniteMind Academy',
   },
-  description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9 in Melbourne. Personalized learning, certified tutors, 95% improvement rate. Book your free diagnostic today!',
+  description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9 in Melbourne. Personalized learning, certified tutors, 95% score gain rate. Book your free diagnostic today!',
   keywords: 'NAPLAN tutoring, NAPLAN preparation, NAPLAN practice, NAPLAN Melbourne, Year 3 NAPLAN, Year 5 NAPLAN, Year 7 NAPLAN, Year 9 NAPLAN, tutoring Melbourne, exam preparation',
   metadataBase: new URL('https://ignitemindacademy.com'),
   openGraph: {
     title: 'NAPLAN Tutoring Melbourne | IgniteMind Academy',
-    description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9. Personalized learning, certified tutors, 95% improvement rate.',
+    description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9. Personalized learning, certified tutors, 95% score gain rate.',
     url: 'https://ignitemindacademy.com',
     siteName: 'IgniteMind Academy',
     locale: 'en_AU',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'NAPLAN Tutoring Melbourne | IgniteMind Academy',
-    description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9. Personalized learning, certified tutors, 95% improvement rate.',
+    description: 'Expert NAPLAN tutoring for Years 3, 5, 7 & 9. Personalized learning, certified tutors, 95% score gain rate.',
     images: ['/og-image.jpg'],
   },
   robots: {
