@@ -7,12 +7,9 @@ import { InstagramIconFilled } from "@/components/ui/InstagramIcon";
 
 const nav = [
   { href: "/naplan", label: "NAPLAN" },
-  { href: "/test", label: "Practice Test" },
-  { href: "/kit", label: "📥 Free Kit", isPromo: true },
+  { href: "/test", label: "Practice Tests" },
   { href: "/pricing", label: "Pricing" },
   { href: "/resources", label: "Resources" },
-  { href: "/quiz", label: "Maths Quiz" },
-  { href: "/dashboard", label: "Dashboard" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -34,16 +31,12 @@ export function SiteHeader() {
             <span className="hidden sm:block text-xl font-bold text-gray-900">{site.name}</span>
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-1 lg:gap-4 md:flex">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium ${
-                  item.isPromo
-                    ? "text-orange-600 hover:text-orange-700 bg-orange-50 px-3 py-1 rounded-full"
-                    : "text-slate-700 hover:text-slate-900"
-                }`}
+                className="text-sm font-medium text-slate-700 hover:text-orange-600 px-2 lg:px-3 py-2 rounded-lg hover:bg-orange-50 transition-colors"
               >
                 {item.label}
               </Link>
@@ -60,11 +53,8 @@ export function SiteHeader() {
             >
               <InstagramIconFilled className="w-5 h-5" />
             </a>
-            <Button href="#contact" variant="secondary" className="hidden sm:inline-flex">
-              {site.primaryCtas.diagnostic}
-            </Button>
-            <Button href={`tel:${site.phoneE164}`} variant="primary">
-              {site.primaryCtas.call}
+            <Button href="/book" variant="primary" className="hidden sm:inline-flex text-sm">
+              Book Free Diagnostic
             </Button>
           </div>
         </div>
