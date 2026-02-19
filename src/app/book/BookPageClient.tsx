@@ -12,7 +12,6 @@ function trackEvent(name: string, params: Record<string, any> = {}) {
   if (typeof window === 'undefined' || !window.gtag) return;
   window.gtag('event', name, params);
 }
-import { SiteLayout } from "@/components/SiteLayout";
 import { Container } from "@/components/Container";
 
 export default function BookPageClient() {
@@ -102,7 +101,7 @@ export default function BookPageClient() {
   };
 
   return (
-    <SiteLayout>
+    <>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 py-16 sm:py-20 overflow-hidden">
         {/* Background Pattern */}
@@ -520,6 +519,6 @@ export default function BookPageClient() {
           </div>
         </Container>
       </section>
-    </SiteLayout>
+    </>
   );
 }
