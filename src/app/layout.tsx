@@ -3,7 +3,7 @@ import './globals.css';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import TrackingEvents from '@/components/analytics/TrackingEvents';
-import TopNav from '@/components/layout/TopNav';
+import { SiteLayout } from '@/components/SiteLayout';
 
 export const metadata: Metadata = {
   title: {
@@ -58,11 +58,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
+      <body>
         <GoogleTag />
         <TrackingEvents />
-        <TopNav />
-        <main>{children}</main>
+        <SiteLayout>
+          {children}
+        </SiteLayout>
         <WhatsAppButton />
       </body>
     </html>
