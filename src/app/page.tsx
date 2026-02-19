@@ -101,7 +101,8 @@ function AnimatedCounter({
     return progress;
   });
 
-  const displayValue = hasAnimated ? value : 0;
+  // Show actual value immediately for better UX and SEO
+  const displayValue = value;
 
   return (
     <motion.div
