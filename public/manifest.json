@@ -1,0 +1,33 @@
+{
+  "name": "IgniteMind Academy",
+  "short_name": "IgniteMind",
+  "description": "Expert NAPLAN Tutoring - Personalized learning for Year 3-9 students",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e94560",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "reference"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": " NAPLAN Prep",
+      "url": "/naplan",
+      "description": "Start NAPLAN preparation"
+    }
+  ]
+}
