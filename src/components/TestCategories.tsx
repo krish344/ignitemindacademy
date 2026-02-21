@@ -14,15 +14,6 @@ const testCategories = [
     url: "/test/naplan"
   },
   {
-    id: "ict",
-    name: "ICT",
-    icon: "💻",
-    color: "from-purple-500 to-indigo-500",
-    description: "Information & Communication Technology",
-    levels: ["Year 3", "Year 5", "Year 7", "Year 9"],
-    url: "/test/ict"
-  },
-  {
     id: "olympiad",
     name: "Olympiad",
     icon: "🏆",
@@ -32,6 +23,7 @@ const testCategories = [
       { name: "Math", icon: "🔢", url: "/test/olympiad?subject=math" },
       { name: "Science", icon: "🔬", url: "/test/olympiad?subject=science" },
       { name: "English", icon: "📚", url: "/test/olympiad?subject=english" },
+      { name: "ICT", icon: "💻", url: "/test/olympiad?subject=ict" },
       { name: "GK", icon: "🌍", url: "/test/olympiad?subject=gk" },
     ],
     url: "/test/olympiad"

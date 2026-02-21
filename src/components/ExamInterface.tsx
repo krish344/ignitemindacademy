@@ -156,7 +156,7 @@ interface ExamInterfaceProps {
 }
 
 export function ExamInterface({ category, grade, testNum, title, icon, color }: ExamInterfaceProps) {
-  const [showLeadModal, setShowLeadModal] = useState(true);
+  const [hasLead, setHasLead] = useState(false);
   const [started, setStarted] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -170,11 +170,11 @@ export function ExamInterface({ category, grade, testNum, title, icon, color }: 
     green: "from-green-500 to-emerald-500",
   };
 
-  // Check if already submitted lead
+  // Check if already submitted lead on mount
   useEffect(() => {
     const savedLead = localStorage.getItem("ignitemind_lead");
     if (savedLead) {
-      setShowLeadModal(false);
+      setHasLead(true);
       setStarted(true);
     }
   }, []);
@@ -195,7 +195,6 @@ export function ExamInterface({ category, grade, testNum, title, icon, color }: 
   }, [started, showResults]);
 
   const handleStart = () => {
-    setShowLeadModal(false);
     setStarted(true);
   };
 
@@ -233,12 +232,12 @@ export function ExamInterface({ category, grade, testNum, title, icon, color }: 
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  // Show lead modal
-  if (showLeadModal) {
+  // Show lead modal if no lead submitted yet
+  if (!hasLead && !started) {
     return (
       <div style={{ minHeight: "100vh", background: "#0f0f1a", padding: "2rem" }}>
         <LeadModal
-          isOpen={showLeadModal}
+          isOpen={true}
           onClose={handleStart}
           onSubmit={() => {}}
         />

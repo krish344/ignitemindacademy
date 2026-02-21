@@ -10,7 +10,6 @@ const nav = [
   { href: "/naplan", label: "NAPLAN" },
   { href: "/test", label: "Mock Tests" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

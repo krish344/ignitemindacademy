@@ -3,7 +3,7 @@ import { ExamInterface } from "@/components/ExamInterface";
 
 export const metadata: Metadata = {
   title: "Olympiad Mock Tests - IgniteMind Academy",
-  description: "Practice Math, Science, English, GK Olympiad tests",
+  description: "Practice Math, Science, English, ICT, GK Olympiad tests",
 };
 
 export default function OlympiadTestPage({ searchParams }: { searchParams: { subject?: string; test?: string } }) {
@@ -14,6 +14,7 @@ export default function OlympiadTestPage({ searchParams }: { searchParams: { sub
     math: { title: "Math Olympiad", icon: "🔢", color: "blue" },
     science: { title: "Science Olympiad", icon: "🔬", color: "green" },
     english: { title: "English Olympiad", icon: "📚", color: "yellow" },
+    ict: { title: "ICT Olympiad", icon: "💻", color: "purple" },
     gk: { title: "General Knowledge", icon: "🌍", color: "teal" },
   };
   
