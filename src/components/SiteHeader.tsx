@@ -8,7 +8,7 @@ import { InstagramIconFilled } from "@/components/ui/InstagramIcon";
 
 const nav = [
   { href: "/naplan", label: "NAPLAN" },
-  { href: "/test", label: "Practice Tests" },
+  { href: "/test", label: "Mock Tests" },
   { href: "/pricing", label: "Pricing" },
   { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
