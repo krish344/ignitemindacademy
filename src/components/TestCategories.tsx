@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 // Constants
@@ -210,15 +210,15 @@ export function TestCategories() {
   const [unlockedTests, setUnlockedTests] = useState<string[]>([]);
   const [completedTests, setCompletedTests] = useState<string[]>([]);
 
-  // Load from localStorage
-  useState(() => {
+  // Load from localStorage on mount
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('ignitemind_unlocked');
       if (saved) setUnlockedTests(JSON.parse(saved));
       const completed = localStorage.getItem('ignitemind_completed');
       if (completed) setCompletedTests(JSON.parse(completed));
     }
-  });
+  }, []);
 
   const isTestLocked = (category: string, level: string, testNum: number) => {
     if (testNum <= FREE_TEST_LIMIT) return false;
