@@ -9,6 +9,26 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <SiteLayout>
+      {/* Header 1: Trust Banner */}
+      <div className="bg-gradient-to-r from-orange-50 to-red-50 border-b border-orange-100">
+        <div className="max-w-4xl mx-auto px-4 py-6 text-center">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">🔒 Your Privacy Matters to Us</h2>
+          <p className="text-slate-600">We are committed to safeguarding your personal information and ensuring a safe learning environment for your child.</p>
+        </div>
+      </div>
+
+      {/* Header 2: Quick Contact Banner */}
+      <div className="bg-slate-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 py-4 text-center">
+          <p className="text-lg">
+            Have questions about your data?{" "}
+            <a href="tel:+917007525681" className="text-orange-400 hover:text-orange-300 font-semibold underline">
+              Call us at +91 7007525681
+            </a>
+          </p>
+        </div>
+      </div>
+
       <div className="py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-slate-900 mb-8">Privacy Policy</h1>
@@ -88,10 +108,33 @@ export default function PrivacyPage() {
                 <br />
                 <strong>Email:</strong> ignitemind60@gmail.com
                 <br />
-                <strong>Phone:</strong> +61 400 123 456
+                <strong>Phone:</strong> +91 7007525681
               </p>
             </section>
           </div>
+        </div>
+      </div>
+
+      {/* Footer 1: Contact CTA */}
+      <div className="bg-orange-50 border-t border-orange-100">
+        <div className="max-w-4xl mx-auto px-4 py-10 text-center">
+          <h3 className="text-xl font-bold text-slate-900 mb-3">Need Help or Have Concerns?</h3>
+          <p className="text-slate-600 mb-4">Our team is here to address any privacy-related questions you may have.</p>
+          <a
+            href="tel:+917007525681"
+            className="inline-block px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-full hover:shadow-lg transition-all"
+          >
+            Call +91 7007525681
+          </a>
+        </div>
+      </div>
+
+      {/* Footer 2: Closing Statement */}
+      <div className="bg-slate-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 py-8 text-center">
+          <p className="text-lg font-medium mb-2">Thank you for trusting IgniteMind Academy</p>
+          <p className="text-slate-400 text-sm">We are committed to protecting your family's privacy while helping your child succeed in their studies.</p>
+          <p className="text-slate-500 text-xs mt-4">© 2026 IgniteMind Academy. All rights reserved.</p>
         </div>
       </div>
     </SiteLayout>
