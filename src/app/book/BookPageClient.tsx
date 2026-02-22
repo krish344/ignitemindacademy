@@ -350,10 +350,18 @@ export default function BookPageClient() {
                         className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 focus:border-orange-500 focus:outline-none bg-white"
                       >
                         <option value="">Select year...</option>
+                        <option value="Year 1">Year 1</option>
+                        <option value="Year 2">Year 2</option>
                         <option value="Year 3">Year 3</option>
+                        <option value="Year 4">Year 4</option>
                         <option value="Year 5">Year 5</option>
+                        <option value="Year 6">Year 6</option>
                         <option value="Year 7">Year 7</option>
+                        <option value="Year 8">Year 8</option>
                         <option value="Year 9">Year 9</option>
+                        <option value="Year 10">Year 10</option>
+                        <option value="Year 11">Year 11</option>
+                        <option value="Year 12">Year 12</option>
                       </select>
                     </div>
                     <div>
