@@ -137,36 +137,52 @@ export async function POST(request: Request) {
     const body: ContactFormData = await request.json();
     const { name, email, phone, yearLevel, message } = body;
 
+    console.log("Contact form submission:", body);
+
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 });
     }
 
-    // Save to database
+    // Save to database - only insert fields that exist in table
     const client = await pool.connect();
     try {
       await client.query(
-        'INSERT INTO contact_submissions (name, email, year_level, message) VALUES ($1, $2, $3, $4)',
-        [name, email, yearLevel, message]
+        'INSERT INTO contact_submissions (name, email, year_level, message, phone) VALUES ($1, $2, $3, $4, $5)',
+        [name, email, yearLevel || null, message, phone || null]
       );
+      console.log("Saved to database");
+    } catch (dbError) {
+      console.error("Database error:", dbError);
+      // Continue anyway - don't fail if DB insert fails
     } finally {
       client.release();
     }
 
     // Send email to admin
-    await transporter.sendMail({
-      from: '"IgniteMind Academy Website" <ignitemind60@gmail.com>',
-      to: "ignitemind60@gmail.com",
-      subject: `📨 New Contact: ${name} - Year ${yearLevel || 'N/A'}`,
-      html: generateAdminEmail(body),
-    });
+    try {
+      await transporter.sendMail({
+        from: '"IgniteMind Academy Website" <ignitemind60@gmail.com>',
+        to: "ignitemind60@gmail.com",
+        subject: `📨 New Contact: ${name} - Year ${yearLevel || 'N/A'}`,
+        html: generateAdminEmail(body),
+      });
+      console.log("Admin email sent");
+    } catch (emailError) {
+      console.error("Email error:", emailError);
+    }
 
     // Send confirmation email to customer
-    await transporter.sendMail({
-      from: '"IgniteMind Academy" <ignitemind60@gmail.com>',
-      to: email,
-      subject: "Thanks for contacting IgniteMind Academy!",
-      html: generateCustomerEmail(body),
-    });
+    try {
+      await transporter.sendMail({
+        from: '"IgniteMind Academy" <ignitemind60@gmail.com>',
+        to: email,
+        subject: "Thanks for contacting IgniteMind Academy!",
+        html: generateCustomerEmail(body),
+      });
+      console.log("Customer email sent");
+    } catch (emailError) {
+      console.error("Customer email error:", emailError);
+    }
 
     return NextResponse.json({ success: true, message: "Contact form submitted successfully" });
   } catch (error) {
