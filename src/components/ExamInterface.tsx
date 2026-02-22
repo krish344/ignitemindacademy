@@ -149,19 +149,20 @@ const sampleQuestions = [
 interface ExamInterfaceProps {
   category: string;
   grade: string;
-  testNum: string;
+  testNum: number;
+  timeLimit?: number;
   title: string;
   icon: string;
   color: string;
 }
 
-export function ExamInterface({ category, grade, testNum, title, icon, color }: ExamInterfaceProps) {
+export function ExamInterface({ category, grade, testNum, timeLimit = 45, title, icon, color }: ExamInterfaceProps) {
   const [hasLead, setHasLead] = useState(false);
   const [started, setStarted] = useState(false);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(50 * 60); // 50 minutes
+  const [timeLeft, setTimeLeft] = useState((timeLimit || 45) * 60);
 
   const colorMap: Record<string, string> = {
     orange: "from-orange-500 to-red-500",
