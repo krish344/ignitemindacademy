@@ -73,6 +73,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">7. Your Rights</h2>
               <p className="text-slate-600">You have the right to:</p>
+              <ul className="list-disc pl-6 text-slate-600 space-y-2">
                 <li>Access the personal information we hold about you</li>
                 <li>Request correction of inaccurate data</li>
                 <li>Request deletion of your personal information</li>
