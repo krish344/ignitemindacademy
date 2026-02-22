@@ -222,7 +222,7 @@ function generateCustomerConfirmationEmail(data: BookingData): string {
 
       <!-- CTA -->
       <div style="text-align: center; margin: 30px 0;">
-        <a href="https://ignitemindacademy.com/pricing" style="display: inline-block; background: linear-gradient(to right, #f97316, #dc2626); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">View Our Pricing</a>
+        <a href="https://ignitemindacademy.vercel.app/pricing" style="display: inline-block; background: linear-gradient(to right, #f97316, #dc2626); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">View Our Pricing</a>
       </div>
 
     </div>

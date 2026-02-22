@@ -8,7 +8,7 @@ const testimonials = [
     name: "Sarah Mitchell",
     role: "Parent of Year 7 Student",
     rating: 5,
-    text: "IgniteMind Academy transformed my daughter's confidence. She went from struggling with numeracy to topping her class in NAPLAN preparation. The tutors are patient and encouraging.",
+    text: "The diagnostic was eye-opening! We finally understood exactly where my daughter needed help. Her NAPLAN result improved to strong Band level within just 2 months of consistent practice.",
     year: "Year 7",
   },
   {
