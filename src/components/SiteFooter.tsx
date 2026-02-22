@@ -102,8 +102,8 @@ export function SiteFooter() {
                 <li><Link href="/about" className="text-slate-400 hover:text-white transition-colors"> About Us</Link></li>
                 <li><Link href="/contact" className="text-slate-400 hover:text-white transition-colors"> Contact</Link></li>
                 <li><Link href="/#faq" className="text-slate-400 hover:text-white transition-colors"> FAQ</Link></li>
-                <li><Link href="#" className="text-slate-400 hover:text-white transition-colors"> Privacy Policy</Link></li>
-                <li><Link href="#" className="text-slate-400 hover:text-white transition-colors"> Terms of Service</Link></li>
+                <li><Link href="/privacy" className="text-slate-400 hover:text-white transition-colors"> Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-slate-400 hover:text-white transition-colors"> Terms of Service</Link></li>
               </ul>
             </div>
 
