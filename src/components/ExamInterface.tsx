@@ -249,14 +249,13 @@ export function ExamInterface({ category, grade, testNum, title, icon, color }: 
   if (showResults) {
     const score = calculateScore();
     const percentage = Math.round((score / sampleQuestions.length) * 100);
-    const band = percentage >= 90 ? "Band 10" : percentage >= 80 ? "Band 9" : percentage >= 70 ? "Band 8" : percentage >= 60 ? "Band 7" : percentage >= 50 ? "Band 6" : "Band 5";
+    const band = percentage >= 90 ? "Exceeding" : percentage >= 70 ? "Strong" : percentage >= 50 ? "Developing" : "Building";
 
     return (
       <div style={{ minHeight: "100vh", background: "#0f0f1a", padding: "2rem" }}>
         <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
           <div style={{ 
-            background: "#1a1a2e", padding: "2rem", borderRadius: "16px",
-            background: `linear-gradient(135deg, rgba(249,115,22,0.2), rgba(234,88,12,0.1))`
+            background: "linear-gradient(135deg, rgba(249,115,22,0.2), rgba(234,88,12,0.1))", padding: "2rem", borderRadius: "16px"
           }}>
             <div style={{ fontSize: "1rem", color: "#aaa" }}>Your Result</div>
             <div style={{ fontSize: "4rem", fontWeight: "800", color: "#f97316" }}>{percentage}%</div>

@@ -208,7 +208,7 @@ export default function BookPageClient() {
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <div className="flex gap-1 text-orange-500 mb-3">⭐⭐⭐⭐⭐</div>
                 <p className="text-gray-600 italic mb-4">
-                  "The diagnostic was eye-opening! We finally understood exactly where my daughter needed help. Her NAPLAN scores improved from Band 6 to Band 9 in just 3 months!"
+                  "The diagnostic was eye-opening! We finally understood exactly where my daughter needed help. Her NAPLAN result improved from Developing to Strong proficiency level within just 2 months!"
                 </p>
                 <p className="font-semibold text-gray-900">— Sarah M., Melbourne</p>
               </div>
@@ -394,12 +394,11 @@ export default function BookPageClient() {
                         onChange={handleChange}
                         className="w-full rounded-xl border-2 border-slate-200 px-4 py-3 focus:border-orange-500 focus:outline-none bg-white"
                       >
-                        <option value="">Not available</option>
-                        <option value="Band 10+">Band 10+ (Exceeding)</option>
-                        <option value="Band 8-9">Band 8-9 (Strong)</option>
-                        <option value="Band 6-7">Band 6-7 (Developing)</option>
-                        <option value="Band 4-5">Band 4-5 (Building)</option>
-                        <option value="Below Band 4">Below Band 4</option>
+                        <option value="">Not available / Haven't taken NAPLAN</option>
+                        <option value="Exceeding">Exceeding expectations</option>
+                        <option value="Strong">Strong proficiency</option>
+                        <option value="Developing">Developing skills</option>
+                        <option value="Beginning">Needs extra support</option>
                       </select>
                     </div>
                     <div>
