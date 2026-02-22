@@ -147,7 +147,7 @@ export default function TermsPage() {
                 <br />
                 <strong>Email:</strong> ignitemind60@gmail.com
                 <br />
-                <strong>Phone:</strong> +61 400 123 456
+                <strong>Phone:</strong> +91 7007525681
               </p>
             </section>
           </div>
