@@ -8,13 +8,14 @@ export const metadata: Metadata = {
 
 export default function IctTestPage({ searchParams }: { searchParams: { grade?: string; test?: string } }) {
   const grade = searchParams.grade || "5";
-  const testNum = searchParams.test || "1";
+  const testNum = parseInt(searchParams.test || "1");
   
   return (
     <ExamInterface 
       category="ict" 
       grade={grade} 
       testNum={testNum}
+      timeLimit={45}
       title="ICT Tests"
       icon="💻"
       color="purple"
