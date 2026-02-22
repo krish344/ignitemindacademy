@@ -201,7 +201,7 @@ export function TestCategories() {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [showAccessModal, setShowAccessModal] = useState(false);
   const [showLeadModal, setShowLeadModal] = useState(false);
-  const [pendingTest, setPendingTest] = useState<{category: string, level: string, test: number} | null>(null);
+  const [pendingTest, setPendingTest] = useState<{category: string, level: string, testNum: number} | null>(null);
   const [unlockedTests, setUnlockedTests] = useState<string[]>([]);
   const [completedTests, setCompletedTests] = useState<string[]>([]);
 
