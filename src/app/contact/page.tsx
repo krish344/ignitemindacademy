@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import { Container } from "@/components/Container";
 import { site } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Contact Us | IgniteMind Academy",
-  description:
-    "Contact IgniteMind Academy to book a free diagnostic or trial class for NAPLAN tutoring in Melbourne, Victoria. Call us or message on WhatsApp.",
-};
 
 function getWhatsAppUrl(message: string): string {
   const encodedMessage = encodeURIComponent(message);
@@ -14,6 +10,51 @@ function getWhatsAppUrl(message: string): string {
 }
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    yearLevel: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage({
+          type: "success",
+          text: "Message sent successfully! We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", email: "", phone: "", yearLevel: "", message: "" });
+      } else {
+        setMessage({ type: "error", text: result.error || "Failed to send message. Please try again." });
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "Something went wrong. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -78,69 +119,103 @@ export default function ContactPage() {
                 <span className="text-3xl">💬</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">WhatsApp</h3>
-              <p className="text-gray-600 mb-4">Quick responses, any time</p>
+              <p className="text-gray-600 mb-4">Quick questions</p>
               <a
-                href={getWhatsAppUrl("Hi! I'd like to learn more about NAPLAN tutoring.")}
+                href={getWhatsAppUrl("Hi! I'm interested in NAPLAN tutoring for my child.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#25D366] font-semibold hover:underline"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-semibold rounded-xl hover:bg-[#20BD5A] transition-colors"
               >
-                Start Chat
+                Chat on WhatsApp
               </a>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Contact Form & Info */}
+      {/* Contact Form */}
       <section className="py-16">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-xl">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                📝 Send Us a Message
-              </h2>
-              <form className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+            {/* Left: Form */}
+            <div className="bg-white rounded-3xl p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+              
+              {message && (
+                <div className={`mb-6 p-4 rounded-xl ${message.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                  {message.text}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       placeholder="John Smith"
                       className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       placeholder="john@example.com"
                       className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="0412 345 678"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Student's Year Level</label>
-                  <select className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none bg-white">
-                    <option>Select year...</option>
-                    <option>Year 3</option>
-                    <option>Year 5</option>
-                    <option>Year 7</option>
-                    <option>Year 9</option>
-                  </select>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="0412 345 678"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Student's Year Level</label>
+                    <select
+                      name="yearLevel"
+                      value={formData.yearLevel}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none bg-white"
+                    >
+                      <option value="">Select year...</option>
+                      <option value="Year 1">Year 1</option>
+                      <option value="Year 2">Year 2</option>
+                      <option value="Year 3">Year 3</option>
+                      <option value="Year 4">Year 4</option>
+                      <option value="Year 5">Year 5</option>
+                      <option value="Year 6">Year 6</option>
+                      <option value="Year 7">Year 7</option>
+                      <option value="Year 8">Year 8</option>
+                      <option value="Year 9">Year 9</option>
+                      <option value="Year 10">Year 10</option>
+                      <option value="Year 11">Year 11</option>
+                      <option value="Year 12">Year 12</option>
+                    </select>
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows={4}
                     placeholder="Tell us about your child's learning goals..."
                     className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-orange-500 focus:outline-none"
@@ -148,14 +223,15 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl hover:shadow-lg transition-all"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl hover:shadow-lg transition-all disabled:opacity-50"
                 >
-                  🚀 Send Message
+                  {isSubmitting ? "Sending..." : "🚀 Send Message"}
                 </button>
               </form>
             </div>
 
-            {/* Additional Info */}
+            {/* Right: Info */}
             <div className="space-y-6">
               <div className="bg-slate-900 rounded-2xl p-8 text-white">
                 <h3 className="text-xl font-bold mb-4">📍 Our Location</h3>
@@ -177,7 +253,7 @@ export default function ContactPage() {
                   For the fastest response, please include:
                 </p>
                 <ul className="space-y-2 text-white/90">
-                  <li>• Your child's current year level (3, 5, 7, or 9)</li>
+                  <li>• Your child's current year level</li>
                   <li>• Your suburb or area in Melbourne</li>
                   <li>• Whether you're interested in a diagnostic or trial class</li>
                   <li>• Any specific areas you'd like to focus on</li>
