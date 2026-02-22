@@ -58,73 +58,78 @@ const testCategories = [
   }
 ];
 
-// Access Code Modal
-function AccessCodeModal({ isOpen, onClose, onSubmit, category }: { isOpen: boolean; onClose: () => void; onSubmit: (code: string) => void; category: string }) {
-  const [code, setCode] = useState("");
+// Access Modal (for locked tests - lead form + access code)
+function AccessCodeModal({ isOpen, onClose, onSubmit }: { isOpen: boolean; onClose: () => void; onSubmit: (data: any, code: string) => void }) {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", grade: "Year 5" });
+  const [accessCode, setAccessCode] = useState("");
   const [error, setError] = useState("");
+  const [step, setStep] = useState<"lead" | "code">("lead");
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const normalizedCode = code.trim().toUpperCase();
-    if (VALID_CODES.includes(normalizedCode) || 
-        (category === 'naplan' && normalizedCode.includes('NAPLAN')) ||
-        (category === 'olympiad' && normalizedCode.includes('OLYMPIAD'))) {
-      onSubmit(normalizedCode);
+    if (!formData.name || !formData.email) return;
+    localStorage.setItem("ignitemind_lead", JSON.stringify(formData));
+    setStep("code");
+  };
+
+  const handleCodeSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = accessCode.trim().toUpperCase();
+    if (VALID_CODES.includes(code) || code.includes('NAPLAN') || code.includes('OLYPIAD')) {
+      onSubmit(formData, code);
     } else {
-      setError("Invalid code. Contact your teacher!");
+      setError("Invalid code. Ask your teacher!");
     }
   };
 
+  const inputStyle = { width: "100%", padding: "0.7rem", borderRadius: "8px", border: "2px solid #333", background: "#0f0f1a", color: "#fff", marginBottom: "0.6rem", fontSize: "0.9rem", boxSizing: "border-box" as const };
+
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 9999,
-      display: "flex", alignItems: "center", justifyContent: "center",
-      background: "rgba(0,0,0,0.92)"
-    }}>
-      <div style={{
-        background: "#1a1a2e", padding: "2rem", borderRadius: "16px",
-        maxWidth: "400px", width: "90%"
-      }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.92)" }}>
+      <div style={{ background: "#1a1a2e", padding: "2rem", borderRadius: "16px", maxWidth: "400px", width: "90%" }}>
         <button onClick={onClose} style={{ position: "absolute", top: "1rem", right: "1rem", background: "none", border: "none", color: "#fff", fontSize: "1.5rem", cursor: "pointer" }}>×</button>
         
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "3rem" }}>🔐</div>
-          <h2 style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Teacher Access Code</h2>
-          <p style={{ color: "#888", marginTop: "0.5rem" }}>This test requires a teacher access code</p>
-        </div>
-
-        <form onSubmit={handleSubmit} style={{ marginTop: "1.5rem" }}>
-          <input
-            value={code}
-            onChange={(e) => { setCode(e.target.value); setError(""); }}
-            placeholder="Enter access code"
-            style={{
-              width: "100%", padding: "0.8rem", borderRadius: "8px",
-              border: error ? "2px solid red" : "2px solid #333",
-              background: "#0f0f1a", color: "#fff",
-              fontSize: "1rem", boxSizing: "border-box"
-            }}
-          />
-          {error && <p style={{ color: "red", fontSize: "0.85rem", marginTop: "0.5rem" }}>{error}</p>}
-          
-          <button type="submit" style={{
-            width: "100%", padding: "0.8rem", borderRadius: "8px",
-            background: "linear-gradient(135deg, #f97316, #ea580c)",
-            color: "white", border: "none", fontWeight: "600",
-            cursor: "pointer", fontSize: "1rem", marginTop: "1rem"
-          }}>
-            Unlock Test
-          </button>
-        </form>
-
-        <div style={{ marginTop: "1.5rem", padding: "1rem", background: "rgba(255,255,255,0.05)", borderRadius: "8px" }}>
-          <p style={{ fontSize: "0.8rem", color: "#888", textAlign: "center" }}>Demo codes:</p>
-          <p style={{ fontSize: "0.85rem", color: "#fff", textAlign: "center", marginTop: "0.5rem" }}>
-            NAPLAN2026 • OLYMPIAD2026 • ALLACCESS2026
+          <div style={{ fontSize: "3rem" }}>{step === "lead" ? "📝" : "🔐"}</div>
+          <h2 style={{ fontSize: "1.4rem", marginTop: "1rem" }}>{step === "lead" ? "Unlock Locked Test" : "Enter Access Code"}</h2>
+          <p style={{ color: "#888", marginTop: "0.5rem", fontSize: "0.9rem" }}>
+            {step === "lead" ? "Enter your details to continue" : "Get access code from your teacher"}
           </p>
         </div>
+
+        {step === "lead" ? (
+          <form onSubmit={handleLeadSubmit} style={{ marginTop: "1.5rem" }}>
+            <input required placeholder="Your Name *" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} style={inputStyle} />
+            <input required type="email" placeholder="Email Address *" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} style={inputStyle} />
+            <input placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} style={inputStyle} />
+            <select required value={formData.grade} onChange={(e) => setFormData({...formData, grade: e.target.value})} style={inputStyle}>
+              <option value="">Select Year *</option>
+              <option value="Year 3">Year 3</option>
+              <option value="Year 4">Year 4</option>
+              <option value="Year 5">Year 5</option>
+              <option value="Year 6">Year 6</option>
+              <option value="Year 7">Year 7</option>
+              <option value="Year 8">Year 8</option>
+              <option value="Year 9">Year 9</option>
+            </select>
+            <button type="submit" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", background: "linear-gradient(135deg, #f97316, #ea580c)", color: "white", border: "none", fontWeight: "600", cursor: "pointer", fontSize: "1rem", marginTop: "0.5rem" }}>
+              Continue →
+            </button>
+          </form>
+        ) : (
+          <form onSubmit={handleCodeSubmit} style={{ marginTop: "1.5rem" }}>
+            <input value={accessCode} onChange={(e) => { setAccessCode(e.target.value); setError(""); }} placeholder="Teacher Access Code" style={{ ...inputStyle, border: error ? "2px solid red" : "2px solid #333" }} />
+            {error && <p style={{ color: "red", fontSize: "0.85rem", marginTop: "0.5rem" }}>{error}</p>}
+            <button type="submit" style={{ width: "100%", padding: "0.8rem", borderRadius: "8px", background: "linear-gradient(135deg, #f97316, #ea580c)", color: "white", border: "none", fontWeight: "600", cursor: "pointer", fontSize: "1rem", marginTop: "1rem" }}>
+              Unlock Test
+            </button>
+            <button type="button" onClick={() => setStep("lead")} style={{ width: "100%", padding: "0.6rem", marginTop: "0.5rem", background: "none", border: "none", color: "#888", cursor: "pointer", fontSize: "0.85rem" }}>
+              ← Back
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
@@ -223,40 +228,34 @@ export function TestCategories() {
 
   const handleTestClick = (category: string, level: string, testNum: number) => {
     const key = `${category}-${level}-${testNum}`;
+    const isLocked = testNum > FREE_TEST_LIMIT && !unlockedTests.includes(key);
     const completedCount = completedTests.filter(t => t.startsWith(`${category}-${level}`)).length;
+    const hasLead = !!localStorage.getItem('ignitemind_lead');
     
-    // Check if locked
-    if (testNum > FREE_TEST_LIMIT && !unlockedTests.includes(key)) {
-      // Need lead capture first if completed 2 free tests
-      if (completedCount >= FREE_TEST_LIMIT) {
+    // Free test: just lead capture if not done
+    if (!isLocked) {
+      if (!hasLead) {
         setPendingTest({ category, level, testNum });
         setShowLeadModal(true);
-        return;
+      } else {
+        // Go to test
+        const url = category === 'naplan' 
+          ? `/test/naplan?grade=${level}&test=${testNum}`
+          : `/test/olympiad?subject=${level}&test=${testNum}`;
+        window.location.href = url;
       }
-      // Show access code modal
-      setPendingTest({ category, level, testNum });
-      setShowAccessModal(true);
       return;
     }
     
-    // Check if need lead capture after 2 free tests
-    if (completedCount >= FREE_TEST_LIMIT && !localStorage.getItem('ignitemind_lead')) {
-      setPendingTest({ category, level, testNum });
-      setShowLeadModal(true);
-      return;
-    }
-
-    // Go to test
-    const url = category === 'naplan' 
-      ? `/test/naplan?grade=${level}&test=${testNum}`
-      : `/test/olympiad?subject=${level}&test=${testNum}`;
-    window.location.href = url;
+    // Locked test: need lead + access code
+    setPendingTest({ category, level, testNum });
+    setShowAccessModal(true);
   };
 
-  const handleAccessCodeSubmit = (code: string) => {
+  const handleAccessCodeSubmit = (data: any, code: string) => {
     if (pendingTest) {
       const { category, level, testNum } = pendingTest;
-      // Unlock all tests for this category
+      // Unlock all tests for this level
       const newUnlocked = [...unlockedTests];
       for (let i = 1; i <= 10; i++) {
         const key = `${category}-${level}-${i}`;
@@ -291,7 +290,6 @@ export function TestCategories() {
         isOpen={showAccessModal} 
         onClose={() => setShowAccessModal(false)} 
         onSubmit={handleAccessCodeSubmit}
-        category={selectedCategory || ''}
       />
       <LeadModal 
         isOpen={showLeadModal} 
@@ -410,7 +408,7 @@ export function TestCategories() {
                       <p className="font-medium text-blue-900">How it works</p>
                       <p className="text-sm text-blue-700 mt-1">
                         Tests 1-2 are FREE. After completing 2 tests, enter your details to unlock more. 
-                        Locked tests require a teacher access code (NAPLAN2026, OLYMPIAD2026, or ALLACCESS2026).
+                        Locked tests require a teacher access code. Ask your school teacher!
                       </p>
                     </div>
                   </div>
