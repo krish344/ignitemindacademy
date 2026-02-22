@@ -21,11 +21,14 @@
       "purpose": "any maskable"
     }
   ],
+  "apple_mobile_web_app_capable": "yes",
+  "apple_mobile_web_app_status_bar_style": "default",
+  "apple-touch-icon": "/icon-192.png",
   "categories": ["education", "reference"],
   "screenshots": [],
   "shortcuts": [
     {
-      "name": " NAPLAN Prep",
+      "name": "NAPLAN Prep",
       "url": "/naplan",
       "description": "Start NAPLAN preparation"
     }

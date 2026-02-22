@@ -4,6 +4,7 @@ import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import GoogleTag from '@/components/analytics/GoogleTag';
 import TrackingEvents from '@/components/analytics/TrackingEvents';
 import { SiteLayout } from '@/components/SiteLayout';
+import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration';
 
 export const metadata: Metadata = {
   title: {
@@ -67,6 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ServiceWorkerRegistration />
         <GoogleTag />
         <TrackingEvents />
         <SiteLayout>
